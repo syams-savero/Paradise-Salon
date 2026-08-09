@@ -17,6 +17,12 @@
 /.next/
 /out/
 
+# served static build (hasil build cms.mjs)
+/site/
+
+# foto upload lokal (di Netlify bakal disimpan ke repo via API)
+/uploads/
+
 # production
 /build
 
@@ -39,3 +45,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cms config (berisi kredensial admin)
+.cms-config.json
+
+# file laporan bug sementara
+/bugReport/

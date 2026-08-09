@@ -1,0 +1,298 @@
+{
+  "site": {
+    "name": "Paradise Salon",
+    "domain": "paradisesalon.com",
+    "city": "Pekanbaru",
+    "title": "Paradise Salon — Salon Mewah & Perawatan Rambut di Pekanbaru",
+    "slogan": "Your beauty starts here",
+    "description": "Paradise Salon, salon premium di Pekanbaru. Potong rambut, hair color, balayage, dan treatment rambut dengan hasil yang membuatmu tampil percaya diri. Booking mudah via WhatsApp.",
+    "keywords": [
+      "salon pekanbaru",
+      "salon mewah pekanbaru",
+      "hair salon pekanbaru",
+      "balayage pekanbaru",
+      "hair treatment pekanbaru",
+      "potong rambut pekanbaru",
+      "salon bridal pekanbaru",
+      "paradise salon"
+    ],
+    "ogImage": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80",
+    "whatsapp": "6281200000000",
+    "phone": "+62 812-0000-0000",
+    "email": "halo@paradisesalon.com",
+    "address": "Jl. Sudirman No. 123, Pekanbaru, Riau 28112",
+    "mapsUrl": "https://maps.google.com/?q=Paradise+Salon+Pekanbaru",
+    "instagram": "https://instagram.com/paradisesalon",
+    "tiktok": "https://tiktok.com/@paradisesalon",
+    "socials": [
+      {
+        "label": "Instagram",
+        "handle": "@paradisesalon",
+        "url": "https://instagram.com/paradisesalon"
+      },
+      {
+        "label": "TikTok",
+        "handle": "@paradisesalon",
+        "url": "https://tiktok.com/@paradisesalon"
+      }
+    ],
+    "founded": "2015",
+    "clients": "10.000+",
+    "rating": "4.9",
+    "ratingCount": "300+",
+    "hours": [
+      {
+        "days": "Senin – Sabtu",
+        "time": "09.00 – 21.00 WIB"
+      },
+      {
+        "days": "Minggu",
+        "time": "10.00 – 19.00 WIB"
+      }
+    ]
+  },
+  "stats": [
+    {
+      "value": "2015",
+      "label": "Berdiri di Pekanbaru"
+    },
+    {
+      "value": "1.000+",
+      "label": "Klien puas"
+    },
+    {
+      "value": "4.9★",
+      "label": "Rating dari 300+ review"
+    },
+    {
+      "value": "15+",
+      "label": "Layanan perawatan"
+    }
+  ],
+  "services": [
+    {
+      "name": "Haircut & Styling",
+      "tagline": "Potongan yang pas dengan bentuk wajah dan gaya hidupmu",
+      "duration": "45 – 90 menit",
+      "from": "Rp 150.000",
+      "image": "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hair Color & Balayage",
+      "tagline": "Warna natural hingga bold, dikerjakan oleh colorist berpengalaman",
+      "duration": "2 – 4 jam",
+      "from": "Rp 450.000",
+      "image": "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Hair Treatment",
+      "tagline": "Recovery rambut rusak, smoothing, dan perawatan intensif",
+      "duration": "1 – 2 jam",
+      "from": "Rp 250.000",
+      "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Bridal & Event",
+      "tagline": "Makeover lengkap untuk hari pentingmu — pengantin, wisuda, event",
+      "duration": "2 – 5 jam",
+      "from": "Rp 1.500.000",
+      "image": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Creambath & Spa Rambut",
+      "tagline": "Relaksasi + nutrisi rambut dalam satu sesi",
+      "duration": "60 – 90 menit",
+      "from": "Rp 200.000",
+      "image": "https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Turu",
+      "tagline": "",
+      "duration": "",
+      "from": "1",
+      "image": ""
+    }
+  ],
+  "packages": [
+    {
+      "name": "Paradise Basic",
+      "tagline": "Penyegaran rambut harian yang cepat dan rapi",
+      "price": "Rp 150.000",
+      "duration": "45 – 60 menit",
+      "includes": [
+        "Konsultasi gaya rambut",
+        "Potong rambut premium",
+        "Blow & styling",
+        "Cuci rambut herbal"
+      ],
+      "featured": false
+    },
+    {
+      "name": "Paradise Signature",
+      "tagline": "Perawatan lengkap untuk rambut sehat dan tampil beda",
+      "price": "Rp 350.000",
+      "duration": "90 – 120 menit",
+      "includes": [
+        "Semua isi Paradise Basic",
+        "Creambath / hair mask",
+        "Treatment minyak argan",
+        "Gratis konsultasi warna",
+        "Minuman eksklusif"
+      ],
+      "featured": true
+    },
+    {
+      "name": "Paradise Royal",
+      "tagline": "Transformasi total untuk momen spesialmu",
+      "price": "Rp 850.000",
+      "duration": "3 – 5 jam",
+      "includes": [
+        "Semua isi Paradise Signature",
+        "Hair color / balayage by colorist",
+        "Deep treatment rambut",
+        "Styling premium",
+        "Perawatan tangan & riasan ringan"
+      ],
+      "featured": false
+    },
+    {
+      "name": "Paradise Bridal",
+      "tagline": "Paket lengkap untuk pengantin dan tamu istimewa",
+      "price": "Mulai Rp 2.500.000",
+      "duration": "Sesuai kebutuhan",
+      "includes": [
+        "Konsultasi & trial",
+        "Potong + color + treatment",
+        "Hijab / riasan pengantin",
+        "Manicure & pedicure",
+        "Perawatan di hari H"
+      ],
+      "featured": false
+    }
+  ],
+  "galleryCategories": [
+    {
+      "id": "semua",
+      "label": "Semua"
+    },
+    {
+      "id": "ruangan",
+      "label": "Ruangan"
+    },
+    {
+      "id": "hasil",
+      "label": "Hasil"
+    },
+    {
+      "id": "proses",
+      "label": "Proses"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Interior Paradise Salon",
+      "category": "ruangan",
+      "width": 3,
+      "height": 4
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Area treatment Paradise Salon",
+      "category": "ruangan",
+      "width": 4,
+      "height": 3
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Hasil balayage klien",
+      "category": "hasil",
+      "width": 3,
+      "height": 4
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Hasil haircut pria",
+      "category": "hasil",
+      "width": 3,
+      "height": 4
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Stylist sedang menata rambut klien",
+      "category": "proses",
+      "width": 4,
+      "height": 3
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Proses pewarnaan rambut",
+      "category": "proses",
+      "width": 4,
+      "height": 3
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Ruang tunggu Paradise Salon",
+      "category": "ruangan",
+      "width": 3,
+      "height": 4
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Hasil hair treatment klien",
+      "category": "hasil",
+      "width": 3,
+      "height": 4
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Rina A.",
+      "service": "Balayage",
+      "rating": 5,
+      "quote": "Hasil balayage-nya persis seperti referensi yang aku bawa. Coloristnya sabar banget jelasin perawatannya. Definitely my go-to salon di Pekanbaru."
+    },
+    {
+      "name": "Budi S.",
+      "service": "Potong Rambut",
+      "rating": 5,
+      "quote": "Akhirnya nemu salon yang stylist-nya beneran nanya dulu gaya hidup aku sebelum motong. Hasilnya rapi dan gampang dirawat. Recommended."
+    },
+    {
+      "name": "Melati P.",
+      "service": "Bridal Package",
+      "rating": 5,
+      "quote": "Paket bridal-nya luar biasa. Trial dulu, di hari H semua on time dan hasilnya flawless. Foto-foto wedding aku jadi cantik banget berkat tim Paradise."
+    },
+    {
+      "name": "Sari W.",
+      "service": "Hair Treatment",
+      "rating": 5,
+      "quote": "Rambut aku yang rusak karena bleaching pelan-pelan sehat lagi. Tempatnya nyaman, treatment-nya detail, dan hasilnya keliatan beda dari bulan pertama."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Apakah perlu booking dulu sebelum datang?",
+      "answer": "Ya, kami sarankan booking melalui WhatsApp minimal sehari sebelumnya supaya stylist dan slot waktumu sudah dipersiapkan. Namun walk-in tetap kami layani jika slot sedang kosong."
+    },
+    {
+      "question": "Bagaimana cara memilih paket yang sesuai?",
+      "answer": "Kamu bisa konsultasi gratis dulu via WhatsApp. Kirim kondisi rambutmu, kami bantu rekomendasikan paket yang pas dengan budget dan tujuanmu — tanpa biaya tambahan."
+    },
+    {
+      "question": "Apakah harga di website sudah final?",
+      "answer": "Ya, semua harga yang tertera adalah harga final tanpa biaya tersembunyi. Harga bisa berbeda hanya jika ada perawatan tambahan yang kamu minta sendiri."
+    },
+    {
+      "question": "Berapa lama waktu untuk satu sesi perawatan?",
+      "answer": "Tergantung layanan: potong rambut sekitar 45–60 menit, treatment 1–2 jam, dan warna/balayage 2–4 jam. Durasi detail ada di setiap halaman paket."
+    },
+    {
+      "question": "Apakah ada garansi jika hasilnya tidak sesuai?",
+      "answer": "Kami selalu melakukan konsultasi sebelum mulai. Jika ada hal yang tidak sesuai, beri tahu kami dalam 3 hari — kami akan perbaiki tanpa biaya. Kepuasanmu prioritas kami."
+    }
+  ],
+  "galleryCta": "Lihat lebih banyak hasil karya kami di Instagram @paradisesalon"
+}

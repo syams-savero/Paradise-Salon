@@ -1,103 +1,64 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { Hero } from "@/components/sections/hero";
+import { Marquee } from "@/components/sections/marquee";
+import { Stats } from "@/components/sections/stats";
+import { Services } from "@/components/sections/services";
+import { GalleryPreview } from "@/components/sections/gallery-preview";
+import { Testimonials } from "@/components/sections/testimonials";
+import { Packages } from "@/components/sections/packages";
+import { Faq } from "@/components/sections/faq";
+import { Cta } from "@/components/sections/cta";
+import { BookingForm } from "@/components/booking-form";
+import { site } from "@/data/content";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: site.title,
+  description: site.description,
+  alternates: { canonical: "/" },
+};
+
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <Hero />
+      <Marquee />
+      <Stats />
+      <Services />
+      <GalleryPreview />
+      <Testimonials />
+      <Packages />
+      <section id="booking" className="py-16 md:py-28">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-5 md:grid-cols-12 md:px-8">
+          <div className="min-w-0 md:col-span-5">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-600">
+              Booking
+            </p>
+            <h2 className="font-serif text-4xl font-medium leading-tight text-ink md:text-5xl">
+              Siap tampil lebih percaya diri?
+            </h2>
+            <p className="mt-4 text-base font-light leading-relaxed text-ink-soft md:text-sm">
+              Ambil HP-mu, isi form di samping, dan chat kami. Tim kami akan
+              konfirmasi jadwal dan menjawab semua pertanyaanmu — tanpa
+              biaya tambahan.
+            </p>
+            <ul className="mt-7 space-y-3 text-base font-light text-ink/85 md:text-sm">
+              {["Konsultasi gratis sebelum perawatan", "Harga fix sesuai paket, tanpa biaya tersembunyi", "Stylist berpengalaman untuk semua jenis rambut"].map(
+                (item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-rosegold-600" />
+                    {item}
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+          <div className="min-w-0 md:col-span-6 md:col-start-7">
+            <BookingForm />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+      <Faq />
+      <Cta />
+    </>
   );
 }
