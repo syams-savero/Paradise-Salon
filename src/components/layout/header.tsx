@@ -15,6 +15,11 @@ const nav = [
   { href: "/tentang-kontak", label: "Tentang & Kontak" },
 ];
 
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+}
+
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -31,13 +36,22 @@ export function Header() {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 w-full max-w-full pt-[env(safe-area-inset-top)] transition-all duration-500",
         scrolled || open
-          ? "border-b border-line bg-ivory/90 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+          ? "border-b border-line bg-ivory/95 backdrop-blur-md"
+          : "border-b border-transparent bg-ivory/60 backdrop-blur-[2px]"
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-20 md:px-8">
@@ -49,7 +63,7 @@ export function Header() {
           <span className="font-serif text-2xl font-semibold tracking-wide text-ink md:text-[26px]">
             Paradise
           </span>
-          <span className="text-[10px] font-medium uppercase tracking-[0.42em] text-rosegold-600">
+          <span className="text-[10px] font-medium uppercase tracking-[0.42em] text-rosegold-700">
             Salon · Pekanbaru
           </span>
         </Link>
@@ -59,10 +73,11 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isActive(pathname, item.href) ? "page" : undefined}
               className={cn(
                 "text-[13px] font-medium uppercase tracking-[0.18em] transition-colors",
-                pathname === item.href
-                  ? "text-rosegold-600"
+                isActive(pathname, item.href)
+                  ? "text-rosegold-700"
                   : "text-ink/70 hover:text-rosegold-700"
               )}
             >
@@ -80,29 +95,34 @@ export function Header() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="flex h-11 w-11 items-center justify-center text-ink lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-sm text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rosegold-600/40 lg:hidden"
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       <div
+        id="mobile-menu"
         className={cn(
           "overflow-hidden border-t border-line bg-ivory/95 backdrop-blur-md transition-[max-height] duration-500 lg:hidden",
           open ? "max-h-96" : "max-h-0 border-t-0"
         )}
+        aria-hidden={!open}
+        inert={!open}
       >
         <nav className="flex flex-col px-5 py-4" aria-label="Navigasi mobile">
           {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isActive(pathname, item.href) ? "page" : undefined}
               className={cn(
                 "border-b border-line/60 py-4 text-sm font-medium uppercase tracking-[0.18em]",
-                pathname === item.href
-                  ? "text-rosegold-600"
+                isActive(pathname, item.href)
+                  ? "text-rosegold-700"
                   : "text-ink/80"
               )}
             >

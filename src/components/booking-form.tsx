@@ -13,9 +13,17 @@ export function BookingForm() {
   const [pkg, setPkg] = useState("");
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [sent, setSent] = useState(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const cleanPhone = phone.replace(/[\s-]/g, "");
+    if (cleanPhone && !/^(\+?\d{8,15})$/.test(cleanPhone)) {
+      setPhoneError("Nomor tidak valid — contoh: 081234567890");
+      return;
+    }
+    setPhoneError("");
     const message = [
       `Halo ${site.name}, saya ${name || "calon klien"} ingin booking:`,
       "",
@@ -26,23 +34,33 @@ export function BookingForm() {
       .filter(Boolean)
       .join("\n");
     window.open(waLink(message), "_blank", "noopener,noreferrer");
+    setSent(true);
+    window.setTimeout(() => setSent(false), 5000);
   }
 
   return (
     <form
       onSubmit={handleSubmit}
+      aria-labelledby="booking-title"
       className="border border-line bg-white/70 p-6 md:p-9"
     >
-      <h3 className="font-serif text-3xl font-medium text-ink md:text-4xl">
+      <h3 id="booking-title" className="font-serif text-3xl font-medium text-ink md:text-4xl">
         Booking sekarang
       </h3>
       <p className="mt-2 text-sm font-light text-ink-soft">
         Isi form singkat ini — pesanmu akan terisi otomatis di WhatsApp.
       </p>
+      <div aria-live="polite" className="mt-7">
+        {sent && (
+          <p className="mb-4 rounded-[3px] border border-rosegold-600/30 bg-rosegold-50 p-3 text-sm text-rosegold-800">
+            WhatsApp sudah dibuka — kirim pesannya untuk mengonfirmasi booking.
+          </p>
+        )}
+      </div>
 
-      <div className="mt-7 space-y-5">
+      <div className="space-y-5">
         <div className="space-y-2">
-          <Label htmlFor="bk-name">Nama</Label>
+          <Label htmlFor="bk-name">Nama <span className="text-rosegold-700" aria-hidden="true">*</span></Label>
           <Input
             id="bk-name"
             value={name}
@@ -76,11 +94,21 @@ export function BookingForm() {
             id="bk-phone"
             type="tel"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              setPhone(e.target.value);
+              setPhoneError("");
+            }}
             placeholder="08xx-xxxx-xxxx"
             inputMode="tel"
             autoComplete="tel"
+            aria-invalid={phoneError ? true : undefined}
+            aria-describedby={phoneError ? "bk-phone-error" : undefined}
           />
+          {phoneError && (
+            <p id="bk-phone-error" className="text-xs text-red-700">
+              {phoneError}
+            </p>
+          )}
         </div>
 
         <div className="space-y-2">

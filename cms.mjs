@@ -16,7 +16,7 @@
 import { createServer } from "node:http";
 import { readFile, writeFile, mkdir, stat, access, readdir, rm, rename } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { createHash, randomBytes, timingSafeEqual, createHmac } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual, createHmac, scryptSync } from "node:crypto";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -52,29 +52,29 @@ const MIME = {
 /* ------------------------------- Auth config ------------------------------ */
 
 function hashPassword(password, salt) {
-  return createHmac("sha256", salt).update(password).digest("hex");
+  return scryptSync(password, salt, 64).toString("hex");
 }
 
 async function loadConfig() {
   if (process.env.CMS_USERNAME && process.env.CMS_PASSWORD) {
-    const salt = createHash("sha256").update("env").digest("hex");
+    const salt = createHash("sha256").update(String(process.env.CMS_USERNAME) + ":" + process.env.CMS_PASSWORD.length).digest("hex") + randomBytes(4).toString("hex");
     return {
       username: process.env.CMS_USERNAME,
       salt,
-      passwordHash: hashPassword(process.env.CMS_PASSWORD, salt),
+      passwordHash: hashPassword(String(process.env.CMS_PASSWORD), salt),
     };
   }
   if (existsSync(CONFIG_FILE)) {
     return JSON.parse(await readFile(CONFIG_FILE, "utf8"));
   }
-  const password = randomBytes(4).toString("hex");
-  const salt = randomBytes(16).toString("hex");
+  const password = randomBytes(16).toString("hex");
+  const salt = randomBytes(32).toString("hex");
   const cfg = {
     username: "admin",
     salt,
     passwordHash: hashPassword(password, salt),
   };
-  await writeFile(CONFIG_FILE, JSON.stringify(cfg, null, 2), "utf8");
+  await writeFile(CONFIG_FILE, JSON.stringify(cfg, null, 2) + "\n", "utf8");
   console.log("==============================================");
   console.log("  CMS PERTAMA KALI — simpan kredensial ini:");
   console.log(`    Username: admin`);
@@ -156,7 +156,8 @@ async function serveStatic(reqUrl, res) {
 
   if (pathname.startsWith("/uploads/")) {
     let p = path.normalize(path.join(UPLOAD_DIR, pathname.slice("/uploads/".length)));
-    if (!p.startsWith(UPLOAD_DIR)) {
+    const base = UPLOAD_DIR + path.sep;
+    if (!p.startsWith(base)) {
       res.writeHead(403);
       return res.end("Forbidden");
     }
@@ -165,6 +166,8 @@ async function serveStatic(reqUrl, res) {
       res.writeHead(200, {
         "Content-Type": MIME[ext] || "application/octet-stream",
         "Cache-Control": "public, max-age=604800",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": "default-src 'none'; sandbox",
       });
       return res.end(await readFile(p));
     }
@@ -173,7 +176,8 @@ async function serveStatic(reqUrl, res) {
   }
 
   let file = path.normalize(path.join(OUT_DIR, pathname));
-  if (!file.startsWith(OUT_DIR)) {
+  const baseDir = OUT_DIR + path.sep;
+  if (!file.startsWith(baseDir)) {
     res.writeHead(403);
     return res.end("Forbidden");
   }
@@ -197,6 +201,7 @@ async function serveStatic(reqUrl, res) {
     res.writeHead(200, {
       "Content-Type": MIME[ext] || "application/octet-stream",
       "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=3600",
+      "X-Content-Type-Options": "nosniff",
     });
     return res.end(await readFile(file));
   }
@@ -216,15 +221,31 @@ async function existsSafe(p) {
 
 /* ---------------------------------- API ----------------------------------- */
 
-async function readBody(req) {
+async function readBody(req, limit = 1_000_000) {
   const chunks = [];
-  for await (const c of req) chunks.push(c);
+  let total = 0;
+  for await (const c of req) {
+    total += c.length;
+    if (total > limit) {
+      req.on("error", () => {});
+      throw new Error("body_too_large");
+    }
+    chunks.push(c);
+  }
   return Buffer.concat(chunks).toString("utf8");
 }
 
-async function readBodyBuffer(req) {
+async function readBodyBuffer(req, limit = 10_000_000) {
   const chunks = [];
-  for await (const c of req) chunks.push(c);
+  let total = 0;
+  for await (const c of req) {
+    total += c.length;
+    if (total > limit) {
+      req.on("error", () => {});
+      throw new Error("body_too_large");
+    }
+    chunks.push(c);
+  }
   return Buffer.concat(chunks);
 }
 
@@ -239,20 +260,112 @@ function getToken(req) {
   return m ? m[1] : null;
 }
 
+/* --------------------------- Rate limiting login --------------------------- */
+
+const loginAttempts = new Map(); // ip -> { count, resetAt }
+const LOGIN_MAX = 5;
+const LOGIN_WINDOW = 15 * 60 * 1000;
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const rec = loginAttempts.get(ip);
+  if (!rec || now > rec.resetAt) {
+    loginAttempts.set(ip, { count: 0, resetAt: now + LOGIN_WINDOW });
+    return true;
+  }
+  if (rec.count >= LOGIN_MAX) return false;
+  return true;
+}
+
+function recordFailure(ip) {
+  const rec = loginAttempts.get(ip) || { count: 0, resetAt: Date.now() + LOGIN_WINDOW };
+  rec.count += 1;
+  loginAttempts.set(ip, rec);
+}
+
+function getClientIp(req) {
+  const fwd = req.headers["x-forwarded-for"];
+  if (fwd) return String(fwd).split(",")[0].trim();
+  return req.socket.remoteAddress || "unknown";
+}
+
+function sleepMs(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+/* ---------------------------- Content validation ---------------------------- */
+
+function isStr(v) {
+  return typeof v === "string";
+}
+
+function isInt(v) {
+  return Number.isInteger(v);
+}
+
+function isArrOf(arr, check) {
+  return Array.isArray(arr) && arr.every(check);
+}
+
+function validateContent(c) {
+  if (!c || typeof c !== "object") return "objek root";
+  if (!c.site || !isStr(c.site.name)) return "site.name harus string";
+  if (!isArrOf(c.services, (s) => s && isStr(s.name) && isStr(s.image))) return "services tidak valid";
+  if (!isArrOf(c.packages, (p) => p && isStr(p.name))) return "packages tidak valid";
+  if (!isArrOf(c.gallery, (g) => g && isStr(g.src) && isInt(g.width) && isInt(g.height))) return "gallery tidak valid";
+  if (!isArrOf(c.testimonials, (t) => t && isStr(t.name) && isStr(t.quote))) return "testimonials tidak valid";
+  if (!isArrOf(c.faqs, (f) => f && isStr(f.question) && isStr(f.answer))) return "faqs tidak valid";
+  if (!c.stats || !Array.isArray(c.stats)) return "stats tidak valid";
+  return null;
+}
+
+function validImageMagic(buf, ext) {
+  if (!buf || buf.length < 16) return false;
+  const b = buf;
+  const isPng = b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4e && b[3] === 0x47;
+  const isJpeg = b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff;
+  const isGif = b[0] === 0x47 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x38;
+  const isWebp =
+    b.slice(0, 4).toString("latin1") === "RIFF" && b.slice(8, 12).toString("latin1") === "WEBP";
+  const map = {
+    ".png": isPng,
+    ".jpg": isJpeg,
+    ".jpeg": isJpeg,
+    ".gif": isGif,
+    ".webp": isWebp,
+  };
+  return map[ext] === true;
+}
+
 async function handleApi(req, res, url, config) {
   const pathname = url.pathname;
 
   if (pathname === "/api/admin/login" && req.method === "POST") {
-    const body = JSON.parse((await readBody(req)) || "{}");
-    const hash = hashPassword(String(body.password || ""), config.salt);
+    const ip = getClientIp(req);
+    if (!checkRateLimit(ip)) {
+      return sendJson(res, 429, { authed: false, error: "Terlalu banyak percobaan. Coba lagi 15 menit lagi." });
+    }
+    await sleepMs(300 + Math.floor(Math.random() * 500));
+    let body = {};
+    try {
+      body = JSON.parse((await readBody(req, 10_000)) || "{}");
+    } catch {
+      return sendJson(res, 400, { authed: false, error: "Body tidak valid" });
+    }
+    const pw = String(body.password || "");
+    const hash = hashPassword(pw, config.salt);
     const ok =
       body.username === config.username &&
       timingSafeEqual(Buffer.from(hash), Buffer.from(config.passwordHash));
-    if (!ok) return sendJson(res, 401, { authed: false, error: "Username atau password salah" });
+    if (!ok) {
+      recordFailure(ip);
+      return sendJson(res, 401, { authed: false, error: "Username atau password salah" });
+    }
     const token = createSession();
+    const secure = req.headers["x-forwarded-proto"] === "https" ? "; Secure" : "";
     res.writeHead(200, {
       "Content-Type": "application/json; charset=utf-8",
-      "Set-Cookie": `cms_session=${token}; HttpOnly; Path=/; Max-Age=28800; SameSite=Lax`,
+      "Set-Cookie": `cms_session=${token}; HttpOnly; Path=/; Max-Age=28800; SameSite=Lax${secure}`,
     });
     return res.end(JSON.stringify({ authed: true }));
   }
@@ -260,9 +373,10 @@ async function handleApi(req, res, url, config) {
   if (pathname === "/api/admin/logout" && req.method === "POST") {
     const token = getToken(req);
     if (token) sessions.delete(token);
+    const secure = req.headers["x-forwarded-proto"] === "https" ? "; Secure" : "";
     res.writeHead(200, {
       "Content-Type": "application/json; charset=utf-8",
-      "Set-Cookie": "cms_session=; HttpOnly; Path=/; Max-Age=0",
+      "Set-Cookie": `cms_session=; HttpOnly; Path=/; Max-Age=0${secure}`,
     });
     return res.end(JSON.stringify({ ok: true }));
   }
@@ -286,8 +400,21 @@ async function handleApi(req, res, url, config) {
   }
 
   if (pathname === "/api/admin/content" && req.method === "PUT") {
+    let body;
     try {
-      const body = JSON.parse((await readBody(req)) || "{}");
+      body = JSON.parse(await readBody(req, 1_000_000));
+    } catch (e) {
+      if (e.message === "body_too_large") {
+        return sendJson(res, 413, { error: "Data terlalu besar" });
+      }
+      return sendJson(res, 400, { error: "Body tidak valid" });
+    }
+    const err = validateContent(body);
+    if (err) return sendJson(res, 400, { error: "Konten tidak valid: " + err });
+    try {
+      if (await existsSafe(CONTENT_FILE)) {
+        await writeFile(CONTENT_FILE + ".bak", await readFile(CONTENT_FILE), "utf8");
+      }
       await writeFile(CONTENT_FILE, JSON.stringify(body, null, 2) + "\n", "utf8");
       const rb = triggerRebuild();
       return sendJson(res, 200, { ok: true, rebuilding: rb.started });
@@ -302,7 +429,10 @@ async function handleApi(req, res, url, config) {
 
   if (pathname === "/api/admin/upload" && req.method === "POST") {
     try {
-      const buf = Buffer.from(await readBodyBuffer(req));
+      const buf = await readBodyBuffer(req);
+      if (buf.length > 10 * 1024 * 1024) {
+        return sendJson(res, 400, { error: "Maksimal 10MB" });
+      }
       const allow = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
       const ct = req.headers["content-type"] || "";
       const mime = ct.split(";")[0].trim().toLowerCase();
@@ -311,14 +441,17 @@ async function handleApi(req, res, url, config) {
       if (!allow.has(fext) || !mime.startsWith("image/")) {
         return sendJson(res, 400, { error: "Hanya file gambar (jpg/png/webp/gif)" });
       }
-      if (buf.length > 10 * 1024 * 1024) {
-        return sendJson(res, 400, { error: "Maksimal 10MB" });
+      if (!validImageMagic(buf, fext)) {
+        return sendJson(res, 400, { error: "Isi file tidak cocok sebagai gambar" });
       }
       await mkdir(UPLOAD_DIR, { recursive: true });
-      const name = Date.now() + "-" + randomBytes(4).toString("hex") + fext;
+      const name = Date.now() + "-" + randomBytes(8).toString("hex") + fext;
       await writeFile(path.join(UPLOAD_DIR, name), buf);
       return sendJson(res, 200, { url: "/uploads/" + name });
     } catch (e) {
+      if (e.message === "body_too_large") {
+        return sendJson(res, 413, { error: "Maksimal 10MB" });
+      }
       console.error(e);
       return sendJson(res, 500, { error: "Upload gagal" });
     }

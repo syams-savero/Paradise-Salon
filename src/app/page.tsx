@@ -9,6 +9,7 @@ import { Packages } from "@/components/sections/packages";
 import { Faq } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
 import { BookingForm } from "@/components/booking-form";
+import { JsonLd } from "@/components/json-ld";
 import { site } from "@/data/content";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <JsonLd />
       <Hero />
       <Marquee />
       <Stats />
@@ -30,7 +32,7 @@ export default function HomePage() {
       <section id="booking" className="py-16 md:py-28">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-5 md:grid-cols-12 md:px-8">
           <div className="min-w-0 md:col-span-5">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-600">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
               Booking
             </p>
             <h2 className="font-serif text-4xl font-medium leading-tight text-ink md:text-5xl">

@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   title: "Tentang & Kontak",
   description: `Tentang ${site.name}, salon premium di ${site.city}. Alamat, jam operasional, kontak, dan media sosial. Konsultasi & booking mudah via WhatsApp.`,
   alternates: { canonical: "/tentang-kontak" },
+  openGraph: {
+    title: `Tentang & Kontak — ${site.name}`,
+    description: `Salon premium di ${site.city}. Alamat, jam operasional, kontak, dan media sosial.`,
+    url: `https://${site.domain}/tentang-kontak/`,
+    images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
+  },
 };
 
 const values = [
@@ -43,7 +49,7 @@ export default function TentangKontakPage() {
       <section className="bg-ivory-deep pb-10 pt-36 md:pb-16 md:pt-44">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-600">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
               Tentang Kami
             </p>
             <h1 className="max-w-3xl font-serif text-5xl font-medium leading-[1.02] text-ink md:text-7xl">
@@ -90,7 +96,7 @@ export default function TentangKontakPage() {
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <Reveal className="min-w-0 md:col-span-5">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-600">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
                 Kontak
               </p>
               <h2 className="font-serif text-4xl font-medium leading-tight text-ink md:text-5xl">

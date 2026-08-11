@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   title: "Paket & Harga",
   description: `Daftar lengkap paket dan harga ${site.name} di ${site.city}: potong rambut, hair color, balayage, treatment, hingga paket bridal. Harga transparan, konsultasi gratis via WhatsApp.`,
   alternates: { canonical: "/paket" },
+  openGraph: {
+    title: `Paket & Harga — ${site.name}`,
+    description: `Harga transparan tanpa biaya tersembunyi: potong, hair color, balayage, treatment, hingga paket bridal.`,
+    url: `https://${site.domain}/paket/`,
+    images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
+  },
 };
 
 const assurances = [
@@ -37,7 +43,7 @@ export default function PaketPage() {
       <section className="bg-ivory-deep pb-10 pt-36 md:pb-16 md:pt-44">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-600">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
               Paket & Harga
             </p>
             <h1 className="max-w-3xl font-serif text-5xl font-medium leading-[1.02] text-ink md:text-7xl">

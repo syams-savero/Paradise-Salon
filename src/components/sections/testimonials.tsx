@@ -1,5 +1,3 @@
-"use client";
-
 import { Star } from "lucide-react";
 import { testimonials } from "@/data/content";
 import { Reveal } from "@/components/motion";
@@ -9,7 +7,7 @@ export function Testimonials() {
     <section className="bg-ivory-deep py-16 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal className="mb-12 text-center md:mb-16">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-600">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
             Kata Mereka
           </p>
           <h2 className="mx-auto max-w-2xl font-serif text-4xl font-medium leading-tight text-ink md:text-6xl">

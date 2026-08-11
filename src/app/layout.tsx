@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { site } from "@/data/content";
 import { SiteChrome } from "@/components/site-chrome";
-import { JsonLd } from "@/components/json-ld";
+import { MotionProvider } from "@/components/motion";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -28,7 +28,6 @@ export const metadata: Metadata = {
   },
   description: site.description,
   keywords: site.keywords,
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "id_ID",
@@ -67,10 +66,17 @@ export default function RootLayout({
       <body
         className={`${cormorant.variable} ${jost.variable} antialiased`}
       >
-        <JsonLd />
-        <SiteChrome>
-          <main className="w-full max-w-full overflow-x-hidden">{children}</main>
-        </SiteChrome>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-rosegold-700 focus:px-4 focus:py-2 focus:text-ivory"
+        >
+          Langsung ke konten
+        </a>
+        <MotionProvider>
+          <SiteChrome>
+            <main id="main" className="w-full max-w-full overflow-x-hidden">{children}</main>
+          </SiteChrome>
+        </MotionProvider>
       </body>
     </html>
   );

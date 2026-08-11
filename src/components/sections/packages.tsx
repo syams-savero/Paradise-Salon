@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { services } from "@/data/content";
@@ -12,7 +10,7 @@ export function Packages({ showLink = true }: { showLink?: boolean }) {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal className="mb-10 flex flex-col justify-between gap-6 md:mb-14 md:flex-row md:items-end">
           <div>
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-600">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
               Paket & Harga
             </p>
             <h2 className="max-w-xl font-serif text-4xl font-medium leading-tight text-ink md:text-6xl">
@@ -22,7 +20,7 @@ export function Packages({ showLink = true }: { showLink?: boolean }) {
           {showLink && (
             <Link
               href="/paket"
-              className="group inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-ink hover:text-rosegold-700"
+              className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-ink hover:text-rosegold-700"
             >
               Semua paket & harga
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

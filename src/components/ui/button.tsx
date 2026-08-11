@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-rosegold-600 text-ivory hover:bg-rosegold-700 active:scale-[0.98]",
+          "bg-rosegold-700 text-ivory hover:bg-rosegold-800 active:scale-[0.98]",
         outline:
           "border border-ink/25 bg-transparent text-ink hover:border-rosegold-600 hover:text-rosegold-700",
         ghost: "text-ink hover:text-rosegold-700",

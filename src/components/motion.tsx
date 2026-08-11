@@ -1,9 +1,13 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, MotionConfig } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+export function MotionProvider({ children }: { children: ReactNode }) {
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+}
 
 export function Reveal({
   children,

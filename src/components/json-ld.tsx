@@ -10,8 +10,8 @@ export function JsonLd() {
     url: `https://${site.domain}`,
     telephone: site.phone,
     email: site.email,
-    image: `https://${site.domain}/images/hero.jpg`,
-    priceRange: "Rp",
+    image: site.ogImage,
+    priceRange: "Rp150.000-Rp2.500.000",
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.split(",")[0],
@@ -24,24 +24,25 @@ export function JsonLd() {
       latitude: 0.5071,
       longitude: 101.4478,
     },
-    openingHoursSpecification: site.hours.map((h) => ({
-      "@type": "OpeningHoursSpecification",
-      description: h.days,
-      opens: h.time.split(" – ")[0].replace(" WIB", ""),
-      closes: h.time.split(" – ")[1].replace(" WIB", ""),
-    })),
+    openingHoursSpecification: site.hours.map((h) => {
+      const t = h.time.replace(" WIB", "").split(" – ");
+      const days = h.days.split(" – ");
+      return {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: days,
+        opens: t[0].replace(".", ":"),
+        closes: t[1].replace(".", ":"),
+      };
+    }),
     sameAs: [site.instagram, site.tiktok],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: site.rating,
-      reviewCount: site.ratingCount,
-    },
   };
+
+  const html = JSON.stringify(schema).replace(/</g, "\\u003c");
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: html }}
     />
   );
 }
