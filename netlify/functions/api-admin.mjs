@@ -102,7 +102,9 @@ function getToken(event) {
   const c = event.cookies || [];
   const found = c.find((x) => x.startsWith("cms_session="));
   if (found) return found.slice("cms_session=".length);
-  return null;
+  const rawCookie = (event.headers && event.headers.cookie) || "";
+  const m = rawCookie.match(/cms_session=([^;]+)/);
+  return m ? m[1] : null;
 }
 
 function getClientIp(event) {
@@ -249,7 +251,13 @@ async function handleLogin(event) {
 
 async function handleContentGet() {
   const { status, text } = await ghRequest("GET", `/repos/${GH.owner}/${GH.repo}/contents/${CONTENT_PATH}`, { raw: true });
-  if (status !== 200) return sendJson(500, { error: "Gagal membaca konten dari GitHub" });
+  if (status !== 200) {
+    let hint = "Gagal membaca konten dari GitHub";
+    if (status === 401) hint = "Token GH_TOKEN tidak valid untuk GitHub API";
+    if (status === 403) hint = "GH_TOKEN tidak punya akses baca ke repo (perlu Contents: Read)";
+    if (status === 404) hint = "File konten tidak ditemukan — cek GH_OWNER/GH_REPO";
+    return sendJson(status, { error: `${hint} (GitHub: ${status})` });
+  }
   try {
     return sendJson(200, JSON.parse(text));
   } catch {

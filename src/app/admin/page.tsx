@@ -170,6 +170,7 @@ export default function AdminPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [loadError, setLoadError] = useState("");
   const [content, setContent] = useState<Content | null>(null);
   const [tab, setTab] = useState<Tab>("profil");
   const [saving, setSaving] = useState(false);
@@ -183,7 +184,12 @@ export default function AdminPage() {
         if (d.authed) {
           setAuthed(true);
           const c = await fetch("/api/admin/content");
-          setContent(await c.json());
+          if (c.ok) {
+            setContent(await c.json());
+          } else {
+            const ed = await c.json().catch(() => ({}));
+            setLoadError(`Gagal memuat konten: ${ed.error ?? c.status}`);
+          }
         } else {
           setAuthed(false);
         }
@@ -212,7 +218,12 @@ export default function AdminPage() {
       if (res.ok && d.authed) {
         setAuthed(true);
         const c = await fetch("/api/admin/content");
-        setContent(await c.json());
+        if (c.ok) {
+          setContent(await c.json());
+        } else {
+          const ed = await c.json().catch(() => ({}));
+          setLoadError(`Gagal memuat konten: ${ed.error ?? c.status}`);
+        }
       } else {
         setLoginError(d.error ?? "Login gagal");
       }
@@ -297,7 +308,21 @@ export default function AdminPage() {
     );
   }
 
-  if (!content) return null;
+  if (!content) {
+    if (loadError) {
+      return (
+        <div className="flex min-h-svh flex-col items-center justify-center gap-3 bg-ivory p-6 text-center">
+          <p className="max-w-md rounded-[3px] border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700">
+            {loadError}
+          </p>
+          <button onClick={handleLogout} className={BTN}>
+            Logout
+          </button>
+        </div>
+      );
+    }
+    return null;
+  }
 
   return (
     <div className="min-h-svh bg-ivory-deep pb-20">
@@ -352,6 +377,11 @@ export default function AdminPage() {
       </header>
 
       <main className="mx-auto max-w-5xl px-5 pt-8">
+        {loadError && (
+          <p className="mb-6 rounded-[3px] border border-red-200 bg-red-50 px-4 py-3 text-sm font-light text-red-700">
+            {loadError}
+          </p>
+        )}
         {buildState && (
           <p className="mb-6 rounded-[3px] border border-line bg-white/70 px-4 py-3 text-sm font-light text-ink-soft">
             {buildState}
