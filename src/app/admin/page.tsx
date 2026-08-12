@@ -100,8 +100,8 @@ function ImageField({
       setErr("Hanya jpg/png/webp/gif");
       return;
     }
-    if (file.size > 10 * 1024 * 1024) {
-      setErr("Maks 10MB");
+    if (file.size > 4 * 1024 * 1024) {
+      setErr("Maks 4MB");
       return;
     }
     setBusy(true);
