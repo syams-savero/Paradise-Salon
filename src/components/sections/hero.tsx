@@ -31,9 +31,6 @@ export function Hero() {
         </h1>
         <div className="mt-6 max-w-lg md:mt-8">
           <p className="font-serif text-2xl italic leading-snug text-ivory/90 md:text-2xl lg:text-[28px]">
-            {site.slogan} — {site.description.split(". ")[0].toLowerCase()}.
-          </p>
-          <p className="mt-3 text-base font-light leading-relaxed text-ivory/75 md:text-sm">
             Potong rambut, warna, dan treatment yang dibuat khusus untukmu —
             oleh tangan berpengalaman, di ruang yang nyaman seperti milikmu
             sendiri.
