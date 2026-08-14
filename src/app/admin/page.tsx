@@ -602,6 +602,7 @@ function PackagesTab({
                 price: "",
                 duration: "",
                 includes: [],
+                image: "",
                 featured: false,
               })
             )
@@ -623,6 +624,7 @@ function PackagesTab({
             <Field label="Durasi" value={p.duration} onChange={(v) => set((p) => void (p.packages[i].duration = v))} />
           </div>
           <Field label="Tagline" value={p.tagline} textarea rows={2} onChange={(v) => set((p) => void (p.packages[i].tagline = v))} />
+          <ImageField label="Foto / Ilustrasi" value={p.image} onChange={(v) => set((p) => void (p.packages[i].image = v))} />
           <Field
             label="Isi Paket (satu baris per item)"
             textarea

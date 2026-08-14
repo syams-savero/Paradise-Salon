@@ -15,8 +15,8 @@ export function ServiceCategory({
   items: Service[];
 }) {
   const [expanded, setExpanded] = useState(false);
-  const preview = items.slice(0, 4);
-  const rest = items.slice(4);
+  const preview = items.slice(0, 6);
+  const rest = items.slice(6);
   const hasMore = rest.length > 0;
 
   return (
