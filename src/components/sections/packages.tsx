@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { services } from "@/data/content";
+import { ArrowRight, Check } from "lucide-react";
+import { packages } from "@/data/content";
 import { Reveal } from "@/components/motion";
-import { Img } from "@/components/img";
+import { cn } from "@/lib/utils";
 
 export function Packages({ showLink = true }: { showLink?: boolean }) {
   return (
@@ -31,26 +31,45 @@ export function Packages({ showLink = true }: { showLink?: boolean }) {
 
       <div className="mx-auto max-w-7xl snap-x snap-mandatory overflow-x-auto scroll-smooth px-5 pb-4 [scrollbar-width:none] md:px-8 [&::-webkit-scrollbar]:hidden">
         <div className="flex w-max gap-4 md:gap-5">
-          {services.map((s) => (
+          {packages.map((p) => (
             <article
-              key={s.name}
-              className="group w-52 shrink-0 snap-start border border-rosegold-600/70 bg-white/60 shadow-[0_0_0_1px_rgba(183,110,121,0.15)] md:w-64"
+              key={p.name}
+              className={cn(
+                "group w-64 shrink-0 snap-start border border-rosegold-600/70 bg-white/60 shadow-[0_0_0_1px_rgba(183,110,121,0.15)] md:w-72",
+                p.featured && "border-rosegold-700 bg-rosegold-600/5"
+              )}
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <Img
-                  src={s.image}
-                  alt={s.name}
-                  sizes="(min-width: 768px) 256px, 208px"
-                  className="transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="flex items-center justify-between border-b border-line px-4 pt-4 md:px-5">
+                <h3 className="font-serif text-xl font-medium text-ink md:text-2xl">
+                  {p.name}
+                </h3>
+                {p.featured && (
+                  <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-rosegold-700">
+                    Terlaris
+                  </span>
+                )}
               </div>
               <div className="p-4 md:p-5">
-                <h3 className="font-serif text-xl font-medium text-ink md:text-2xl">
-                  {s.name}
-                </h3>
-                <p className="mt-1.5 text-xs font-medium uppercase tracking-[0.14em] text-rosegold-700">
-                  {s.from}
+                <p className="text-2xl font-medium tracking-wide text-rosegold-700">
+                  {p.price}
                 </p>
+                <p className="mt-1 text-xs text-ink-soft">
+                  {p.duration}
+                </p>
+                <p className="mt-3 text-sm font-light leading-relaxed text-ink-soft">
+                  {p.tagline}
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {p.includes.map((inc) => (
+                    <li
+                      key={inc}
+                      className="flex items-start gap-2 text-sm font-light text-ink"
+                    >
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-rosegold-600" />
+                      {inc}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
