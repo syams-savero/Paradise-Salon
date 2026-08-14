@@ -72,96 +72,425 @@
   ],
   "services": [
     {
-      "name": "Haircut & Styling",
-      "tagline": "Potongan yang pas dengan bentuk wajah dan gaya hidupmu",
-      "duration": "45 – 90 menit",
-      "from": "Rp 150.000",
-      "image": "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80"
+      "name": "Gunting",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 15.000",
+      "image": ""
     },
     {
-      "name": "Hair Color & Balayage",
-      "tagline": "Warna natural hingga bold, dikerjakan oleh colorist berpengalaman",
-      "duration": "2 – 4 jam",
-      "from": "Rp 450.000",
-      "image": "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1200&q=80"
+      "name": "Gunting Cuci Rambut",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 30.000",
+      "image": ""
     },
     {
-      "name": "Hair Treatment",
-      "tagline": "Recovery rambut rusak, smoothing, dan perawatan intensif",
-      "duration": "1 – 2 jam",
-      "from": "Rp 250.000",
-      "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80"
+      "name": "Gunting Poni",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 5.000",
+      "image": ""
     },
     {
-      "name": "Bridal & Event",
-      "tagline": "Makeover lengkap untuk hari pentingmu — pengantin, wisuda, event",
-      "duration": "2 – 5 jam",
-      "from": "Rp 1.500.000",
-      "image": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80"
+      "name": "Catok",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 15.000 – Rp 20.000",
+      "image": ""
     },
     {
-      "name": "Creambath & Spa Rambut",
-      "tagline": "Relaksasi + nutrisi rambut dalam satu sesi",
-      "duration": "60 – 90 menit",
-      "from": "Rp 200.000",
-      "image": "https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=1200&q=80"
+      "name": "Catok Curly",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 20.000 – Rp 25.000",
+      "image": ""
+    },
+    {
+      "name": "Cuci Catok Curly Vitamin",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 25.000 – Rp 30.000",
+      "image": ""
+    },
+    {
+      "name": "Catok Baba",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 30.000",
+      "image": ""
+    },
+    {
+      "name": "Rapiin Alis",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 10.000",
+      "image": ""
+    },
+    {
+      "name": "Jalin Rambut",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 15.000 – Rp 25.000",
+      "image": ""
+    },
+    {
+      "name": "Sambung Rambut",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 2.000 / per lem",
+      "image": ""
+    },
+    {
+      "name": "Sambung Rambut (dijalin)",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 3.000 / per lem",
+      "image": ""
+    },
+    {
+      "name": "Lepas Sambung Rambut",
+      "category": "Perawatan Rambut",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 500 / per lem",
+      "image": ""
+    },
+    {
+      "name": "Creambath Spa",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 25.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Rose & Aloe Vera",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 30.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Tropical",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 40.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Keratin",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Blueberry",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Bali",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Coklat",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 55.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Yogurt",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 55.000",
+      "image": ""
+    },
+    {
+      "name": "Creambath Mint",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 55.000",
+      "image": ""
+    },
+    {
+      "name": "Detox Ketombe",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 55.000",
+      "image": ""
+    },
+    {
+      "name": "Pijat & Lulur Tangan",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 15.000",
+      "image": ""
+    },
+    {
+      "name": "Pijat & Lulur Kaki",
+      "category": "Creambath & Masker",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 15.000",
+      "image": ""
+    },
+    {
+      "name": "Lash Lift (Pelentikan Bulu Mata)",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Eyelash Korean Natural (Promo)",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 60.000",
+      "image": ""
+    },
+    {
+      "name": "Eyelash Korean Double (Promo)",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 80.000",
+      "image": ""
+    },
+    {
+      "name": "Remove Eyelash",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 25.000",
+      "image": ""
+    },
+    {
+      "name": "Retouch Eyelash",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 25.000 – Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Nail Art Polos",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 4.000 / per jari",
+      "image": ""
+    },
+    {
+      "name": "Nail Art Motif",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 5.000 / per jari",
+      "image": ""
+    },
+    {
+      "name": "Kuku Palsu",
+      "category": "Lashes & Nail",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 8.000 / per jari",
+      "image": ""
+    },
+    {
+      "name": "Facial Sariayu",
+      "category": "Perawatan Wajah",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 25.000",
+      "image": ""
+    },
+    {
+      "name": "Facial Wardah",
+      "category": "Perawatan Wajah",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 35.000",
+      "image": ""
+    },
+    {
+      "name": "Facial Biokos",
+      "category": "Perawatan Wajah",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 35.000",
+      "image": ""
+    },
+    {
+      "name": "Totok Wajah",
+      "category": "Perawatan Wajah",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 25.000",
+      "image": ""
+    },
+    {
+      "name": "Ratus & Intimacy Care",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 35.000",
+      "image": ""
+    },
+    {
+      "name": "Lulur Seluruh Tubuh",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Pijat Seluruh Badan",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 60.000 / per jam",
+      "image": ""
+    },
+    {
+      "name": "Refleksi Kaki",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 55.000 / per jam",
+      "image": ""
+    },
+    {
+      "name": "Bleaching Tangan",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Bleaching Kaki",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 80.000",
+      "image": ""
+    },
+    {
+      "name": "Bleaching Seluruh Tubuh",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 130.000",
+      "image": ""
+    },
+    {
+      "name": "Lulur Whitening",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 50.000",
+      "image": ""
+    },
+    {
+      "name": "Massage",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 60.000 / per jam",
+      "image": ""
+    },
+    {
+      "name": "Lulur Cleopatra + Pijat + Lulur Pemutih + Masker Coklat Badan",
+      "category": "Perawatan Tubuh",
+      "tagline": "",
+      "duration": "",
+      "from": "Rp 70.000",
+      "image": ""
     }
   ],
   "packages": [
     {
-      "name": "Paradise Basic",
-      "tagline": "Penyegaran rambut harian yang cepat dan rapi",
-      "price": "Rp 150.000",
-      "duration": "45 – 60 menit",
+      "name": "Paket Zamrud",
+      "tagline": "Creambath tropical, pijat, lulur punggung dan tangan, plus totok wajah",
+      "price": "Rp 50.000",
+      "duration": "± 2 jam",
       "includes": [
-        "Konsultasi gaya rambut",
-        "Potong rambut premium",
-        "Blow & styling",
-        "Cuci rambut herbal"
+        "Creambath tropical",
+        "Pijat",
+        "Lulur punggung dan tangan",
+        "Totok wajah"
       ],
       "featured": false
     },
     {
-      "name": "Paradise Signature",
-      "tagline": "Perawatan lengkap untuk rambut sehat dan tampil beda",
-      "price": "Rp 350.000",
-      "duration": "90 – 120 menit",
+      "name": "Paket Topaz",
+      "tagline": "Massage satu jam, creambath, dan totok wajah dalam satu paket",
+      "price": "Rp 110.000",
+      "duration": "± 2,5 jam",
       "includes": [
-        "Semua isi Paradise Basic",
-        "Creambath / hair mask",
-        "Treatment minyak argan",
-        "Gratis konsultasi warna",
-        "Minuman eksklusif"
+        "Massage 1 jam",
+        "Creambath",
+        "Totok wajah"
+      ],
+      "featured": false
+    },
+    {
+      "name": "Paket Safir",
+      "tagline": "Lulur pemutih, creambath spa, totok wajah, pijat dan lulur tangan & punggung",
+      "price": "Rp 95.000",
+      "duration": "± 3 jam",
+      "includes": [
+        "Lulur pemutih",
+        "Creambath SPA",
+        "Totok wajah",
+        "Pijat dan lulur tangan dan punggung"
+      ],
+      "featured": false
+    },
+    {
+      "name": "Paket Black Diamond",
+      "tagline": "Paket lengkap: pijat seluruh badan, lulur seluruh badan, creambath tropical, totok wajah",
+      "price": "Rp 160.000",
+      "duration": "± 3,5 jam",
+      "includes": [
+        "Pijat seluruh badan 1,5 jam",
+        "Lulur seluruh badan",
+        "Creambath tropical",
+        "Totok wajah"
       ],
       "featured": true
-    },
-    {
-      "name": "Paradise Royal",
-      "tagline": "Transformasi total untuk momen spesialmu",
-      "price": "Rp 850.000",
-      "duration": "3 – 5 jam",
-      "includes": [
-        "Semua isi Paradise Signature",
-        "Hair color / balayage by colorist",
-        "Deep treatment rambut",
-        "Styling premium",
-        "Perawatan tangan & riasan ringan"
-      ],
-      "featured": false
-    },
-    {
-      "name": "Paradise Bridal",
-      "tagline": "Paket lengkap untuk pengantin dan tamu istimewa",
-      "price": "Mulai Rp 2.500.000",
-      "duration": "Sesuai kebutuhan",
-      "includes": [
-        "Konsultasi & trial",
-        "Potong + color + treatment",
-        "Hijab / riasan pengantin",
-        "Manicure & pedicure",
-        "Perawatan di hari H"
-      ],
-      "featured": false
     }
   ],
   "galleryCategories": [

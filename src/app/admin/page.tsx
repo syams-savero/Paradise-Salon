@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { LogOut, Save, Loader2, Plus, Trash2, Check, Upload } from "lucide-react";
 import type { Content } from "@/data/content";
+import { serviceCategories } from "@/data/content";
 
 const INPUT =
   "w-full rounded-[3px] border border-line bg-white px-3 py-2 text-sm text-ink focus:border-rosegold-600 focus:outline-none focus:ring-2 focus:ring-rosegold-600/20";
@@ -535,6 +536,7 @@ function ServicesTab({
             set((p) =>
               void p.services.push({
                 name: "",
+                category: serviceCategories[0],
                 tagline: "",
                 duration: "",
                 from: "",
@@ -555,6 +557,20 @@ function ServicesTab({
         >
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <Field label="Nama" value={s.name} onChange={(v) => set((p) => void (p.services[i].name = v))} />
+            <div>
+              <label className={LABEL}>Kategori</label>
+              <select
+                value={s.category || ""}
+                onChange={(e) => set((p) => void (p.services[i].category = e.target.value))}
+                className={INPUT}
+              >
+                {serviceCategories.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
             <Field label="Durasi" value={s.duration} onChange={(v) => set((p) => void (p.services[i].duration = v))} />
             <Field label="Harga (Mulai)" value={s.from} onChange={(v) => set((p) => void (p.services[i].from = v))} />
           </div>

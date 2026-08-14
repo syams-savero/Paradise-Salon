@@ -3,6 +3,13 @@ import content from "./content.json";
 export const site = content.site as typeof content.site;
 export const stats = content.stats;
 export const services = content.services;
+export const serviceCategories = [
+  "Perawatan Rambut",
+  "Creambath & Masker",
+  "Lashes & Nail",
+  "Perawatan Wajah",
+  "Perawatan Tubuh",
+];
 export const packages = content.packages;
 export const galleryCategories = content.galleryCategories;
 export const gallery = content.gallery;

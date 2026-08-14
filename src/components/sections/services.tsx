@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight, Clock } from "lucide-react";
-import { services, waLink } from "@/data/content";
+import { serviceCategories, services, waLink } from "@/data/content";
 import { Reveal } from "@/components/motion";
 import { Img } from "@/components/img";
 import { Button } from "@/components/ui/button";
 
 export function Services() {
-  const [primary, ...rest] = services;
+  const featured = serviceCategories
+    .map((cat) => services.find((s) => s.category === cat))
+    .filter((s): s is (typeof services)[number] => Boolean(s));
+  const [primary, ...rest] = featured;
 
   return (
     <section className="bg-ivory-deep pb-16 pt-8 md:pb-28 md:pt-14">
@@ -50,6 +53,9 @@ export function Services() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                  <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.35em] text-blush-200">
+                    {primary.category}
+                  </p>
                   <h3 className="font-serif text-2xl font-medium text-ivory md:text-4xl">
                     {primary.name}
                   </h3>
@@ -92,6 +98,9 @@ export function Services() {
                   </div>
                   <div className="flex flex-col justify-between p-4 md:p-5">
                     <div>
+                      <p className="mb-1 text-[9px] font-medium uppercase tracking-[0.3em] text-rosegold-600">
+                        {s.category}
+                      </p>
                       <h3 className="font-serif text-xl font-medium text-ink md:text-2xl">
                         {s.name}
                       </h3>
@@ -110,7 +119,7 @@ export function Services() {
         </div>
 
         <div className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2">
-          {rest.slice(2, 3).map((s, i) => (
+          {rest.slice(2, 4).map((s, i) => (
             <Reveal key={s.name} delay={i * 0.08} className="min-w-0">
               <Link
                 href={waLink(
@@ -129,6 +138,9 @@ export function Services() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
+                  <p className="mb-1 text-[9px] font-medium uppercase tracking-[0.3em] text-rosegold-600">
+                    {s.category}
+                  </p>
                   <h3 className="font-serif text-xl font-medium text-ink md:text-2xl">
                     {s.name}
                   </h3>

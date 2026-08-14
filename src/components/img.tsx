@@ -28,6 +28,20 @@ export function Img({
   priority?: boolean;
   sizes?: string;
 }) {
+  if (!src) {
+    return (
+      <div
+        className={cn(
+          "flex h-full w-full items-center justify-center bg-gradient-to-br from-blush-100 to-ivory-deep",
+          className
+        )}
+      >
+        <span className="font-serif text-lg italic text-ink-soft/50">
+          {alt || "Foto belum tersedia"}
+        </span>
+      </div>
+    );
+  }
   const responsive = buildSrcSet(src);
   return (
     // eslint-disable-next-line @next/next/no-img-element
