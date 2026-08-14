@@ -9,11 +9,11 @@ export function Services() {
   const [primary, ...rest] = services;
 
   return (
-    <section className="bg-ivory-deep py-16 md:py-28">
+    <section className="bg-ivory-deep pb-16 pt-8 md:pb-28 md:pt-14">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal className="mb-14 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end">
           <div>
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.45em] text-rosegold-700">
+            <p className="mb-3 text-lg font-medium uppercase tracking-[0.45em] text-rosegold-700">
               Layanan Kami
             </p>
             <h2 className="max-w-xl font-serif text-4xl font-medium leading-tight text-ink md:text-6xl">

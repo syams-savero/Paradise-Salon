@@ -62,7 +62,7 @@ export default function PaketPage() {
       <section className="bg-ivory py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal className="mb-12 md:mb-16">
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.45em] text-rosegold-700">
+            <p className="mb-3 text-lg font-medium uppercase tracking-[0.45em] text-rosegold-700">
               Layanan Kami
             </p>
             <h2 className="max-w-2xl font-serif text-4xl font-medium leading-tight text-ink md:text-6xl">
