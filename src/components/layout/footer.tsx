@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Clock, Phone } from "lucide-react";
 import { InstagramIcon, TikTokIcon } from "@/components/icons";
 import { site, waLink, waDefaultMessage } from "@/data/content";
@@ -16,13 +17,22 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
-            <div className="flex flex-col leading-none">
-              <span className="font-serif text-3xl font-semibold tracking-wide">
-                Paradise
-              </span>
-              <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.42em] text-blush-200">
-                Salon · Pekanbaru
-              </span>
+            <div className="flex items-center gap-3 leading-none">
+              <Image
+                src={site.logo}
+                alt={site.name}
+                width={48}
+                height={48}
+                className="h-12 w-12 object-contain"
+              />
+              <div className="flex flex-col leading-none">
+                <span className="font-serif text-3xl font-semibold tracking-wide">
+                  {site.name}
+                </span>
+                <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.42em] text-blush-200">
+                  Salon · {site.city}
+                </span>
+              </div>
             </div>
             <p className="max-w-xs text-sm font-light leading-relaxed text-ivory/70">
               {site.slogan}. Salon premium di {site.city} untuk perawatan rambut,

@@ -49,7 +49,8 @@
         "days": "Minggu",
         "time": "10.00 – 19.00 WIB"
       }
-    ]
+    ],
+    "logo": "/logo/logo.png"
   },
   "stats": [
     {

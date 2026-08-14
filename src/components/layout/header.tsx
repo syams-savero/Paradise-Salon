@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -57,14 +58,24 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-20 md:px-8">
         <Link
           href="/"
-          className="group flex flex-col leading-none"
+          className="group flex items-center gap-2.5 leading-none"
           aria-label={`${site.name} — beranda`}
         >
-          <span className="font-serif text-2xl font-semibold tracking-wide text-ink md:text-[26px]">
-            Paradise
-          </span>
-          <span className="text-[10px] font-medium uppercase tracking-[0.42em] text-rosegold-700">
-            Salon · Pekanbaru
+          <Image
+            src={site.logo}
+            alt={`${site.name}`}
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+            priority
+          />
+          <span className="flex flex-col leading-none">
+            <span className="font-serif text-2xl font-semibold tracking-wide text-ink md:text-[26px]">
+              {site.name}
+            </span>
+            <span className="text-[10px] font-medium uppercase tracking-[0.42em] text-rosegold-700">
+              Salon · {site.city}
+            </span>
           </span>
         </Link>
 

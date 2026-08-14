@@ -409,6 +409,7 @@ function ProfileTab({
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       <Section title="Profil Salon">
+        <ImageField label="Logo" value={c.site.logo} onChange={(v) => set((p) => void (p.site.logo = v))} />
         <Field label="Nama Salon" value={c.site.name} onChange={(v) => set((p) => void (p.site.name = v))} />
         <Field label="Kota" value={c.site.city} onChange={(v) => set((p) => void (p.site.city = v))} />
         <Field label="Slogan" value={c.site.slogan} onChange={(v) => set((p) => void (p.site.slogan = v))} />
