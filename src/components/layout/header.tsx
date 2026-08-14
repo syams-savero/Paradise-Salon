@@ -74,7 +74,7 @@ export function Header() {
               {site.name}
             </span>
             <span className="text-[10px] font-medium uppercase tracking-[0.42em] text-rosegold-700">
-              Salon · {site.city}
+              {site.city}
             </span>
           </span>
         </Link>
