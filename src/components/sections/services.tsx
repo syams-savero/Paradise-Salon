@@ -3,6 +3,7 @@ import { ArrowUpRight, Clock } from "lucide-react";
 import { services, waLink } from "@/data/content";
 import { Reveal } from "@/components/motion";
 import { Img } from "@/components/img";
+import { Button } from "@/components/ui/button";
 
 export function Services() {
   const [primary, ...rest] = services;
@@ -12,20 +13,22 @@ export function Services() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal className="mb-14 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end">
           <div>
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.45em] text-rosegold-700">
               Layanan Kami
             </p>
             <h2 className="max-w-xl font-serif text-4xl font-medium leading-tight text-ink md:text-6xl">
               Perawatan yang disesuaikan dengan kebutuhanmu
             </h2>
           </div>
-          <Link
-            href="/paket"
-            className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-ink hover:text-rosegold-700"
-          >
-            Semua paket & harga
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+          <Button asChild size="sm" variant="outline">
+            <Link
+              href="/paket"
+              className="group inline-flex items-center gap-2 uppercase tracking-[0.18em]"
+            >
+              Semua paket & harga
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </Button>
         </Reveal>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-6">
@@ -107,7 +110,7 @@ export function Services() {
         </div>
 
         <div className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2">
-          {rest.slice(2).map((s, i) => (
+          {rest.slice(2, 3).map((s, i) => (
             <Reveal key={s.name} delay={i * 0.08} className="min-w-0">
               <Link
                 href={waLink(

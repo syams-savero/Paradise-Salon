@@ -5,7 +5,9 @@ import { Packages } from "@/components/sections/packages";
 import { Cta } from "@/components/sections/cta";
 import { Reveal } from "@/components/motion";
 import { Button } from "@/components/ui/button";
-import { site } from "@/data/content";
+import { Img } from "@/components/img";
+import { services, site, waLink } from "@/data/content";
+import { Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Paket & Harga",
@@ -54,6 +56,60 @@ export default function PaketPage() {
               dan jaminan perbaikan. Harga final, tanpa biaya tersembunyi.
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-ivory py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <Reveal className="mb-12 md:mb-16">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.45em] text-rosegold-700">
+              Layanan Kami
+            </p>
+            <h2 className="max-w-2xl font-serif text-4xl font-medium leading-tight text-ink md:text-6xl">
+              Semua layanan yang kami tawarkan
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+            {services.map((s, i) => (
+              <Reveal key={s.name} delay={i * 0.06} className="min-w-0">
+                <Link
+                  href={waLink(
+                    `Halo Paradise Salon, saya tertarik dengan layanan ${s.name}. Boleh info lebih lanjut?`
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group grid grid-cols-2 overflow-hidden border border-line bg-white/60"
+                >
+                  <div className="relative aspect-square overflow-hidden">
+                    <Img
+                      src={s.image}
+                      alt={s.name}
+                      sizes="(min-width: 768px) 25vw, 50vw"
+                      className="transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-between p-4 md:p-5">
+                    <div>
+                      <h3 className="font-serif text-xl font-medium text-ink md:text-2xl">
+                        {s.name}
+                      </h3>
+                      <p className="mt-1.5 text-sm font-light leading-relaxed text-ink-soft">
+                        {s.tagline}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between gap-2 pt-3">
+                      <span className="flex items-center gap-1.5 text-xs text-ink-soft">
+                        <Clock className="h-3.5 w-3.5" /> {s.duration}
+                      </span>
+                      <span className="text-xs font-medium uppercase tracking-[0.14em] text-rosegold-700">
+                        Mulai {s.from}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
