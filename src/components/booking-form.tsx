@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback, type FormEvent } from "react";
-import { Send, X, ChevronRight, ChevronLeft, MapPin, Search } from "lucide-react";
+import { Send, X, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { packages, services, serviceCategories, site, waLink } from "@/data/content";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
