@@ -1,11 +1,13 @@
 const items = [
-  "Haircut & Styling",
-  "Balayage",
+  "Gunting",
+  "Creambath Spa",
   "Hair Color",
-  "Hair Treatment",
+  "Lash Lift",
+  "Facial Sariayu",
+  "Pijat Seluruh Badan",
+  "Lulur Whitening",
+  "Nail Art",
   "Bridal & Event",
-  "Creambath",
-  "Smoothing",
   "Konsultasi Gratis",
 ];
 

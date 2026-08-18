@@ -9,16 +9,7 @@ import {
 import { site, waLink, waDefaultMessage } from "@/data/content";
 import { Reveal } from "@/components/motion";
 import { Button } from "@/components/ui/button";
-import dynamic from "next/dynamic";
-
-const Map = dynamic(() => import("./_map").then((m) => m.BranchMap), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-[400px] items-center justify-center border border-line bg-ivory-deep text-sm text-ink-soft">
-      Memuat peta…
-    </div>
-  ),
-});
+import { MapWrapper } from "./_map-wrapper";
 
 export const metadata: Metadata = {
   title: "Tentang & Kontak",
@@ -248,7 +239,7 @@ export default function TentangKontakPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <Map branches={site.branches} />
+            <MapWrapper branches={site.branches} />
           </Reveal>
         </div>
       </section>

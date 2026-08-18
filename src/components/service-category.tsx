@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Clock } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { waLink } from "@/data/content";
 import type { Service } from "@/data/content";
-import { Img } from "@/components/img";
 
 export function ServiceCategory({
   category,
@@ -58,29 +57,14 @@ function ServiceCard({ s }: { s: Service }) {
       )}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col overflow-hidden border border-line bg-white/60"
+      className="group flex flex-col justify-between border border-line bg-white/60 p-5 transition-all duration-300 hover:border-rosegold-600/40 hover:bg-white md:p-6"
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <Img
-          src={s.image}
-          alt={s.name}
-          sizes="(min-width: 768px) 25vw, 50vw"
-          className="transition-transform duration-700 group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-1 flex-col justify-between p-3 md:p-4">
-        <h4 className="font-serif text-lg font-medium text-ink md:text-xl">
-          {s.name}
-        </h4>
-        <div className="mt-3 flex items-center justify-between gap-2">
-          <span className="flex items-center gap-1.5 text-[11px] text-ink-soft">
-            <Clock className="h-3 w-3" /> {s.duration}
-          </span>
-          <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-rosegold-700">
-            {s.from}
-          </span>
-        </div>
-      </div>
+      <h4 className="font-serif text-lg font-medium text-ink md:text-xl">
+        {s.name}
+      </h4>
+      <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.12em] text-rosegold-700">
+        Mulai {s.from}
+      </p>
     </Link>
   );
 }

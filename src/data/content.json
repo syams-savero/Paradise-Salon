@@ -92,7 +92,7 @@
       "label": "Rating dari 300+ review"
     },
     {
-      "value": "15+",
+      "value": "40+",
       "label": "Layanan perawatan"
     }
   ],
@@ -601,28 +601,22 @@
   ],
   "testimonials": [
     {
-      "name": "Rina A.",
-      "service": "Balayage",
+      "name": "Klien Paradise",
+      "service": "Pijat",
       "rating": 5,
-      "quote": "Hasil balayage-nya persis seperti referensi yang aku bawa. Coloristnya sabar banget jelasin perawatannya. Definitely my go-to salon di Pekanbaru."
+      "quote": "Salon Paradise terbaik.. karyawan nya ramah🥰 gak akan berpindah ke lain hati.. dari dulu tetap Paradise is the best."
     },
     {
-      "name": "Budi S.",
-      "service": "Potong Rambut",
+      "name": "Klien Paradise",
+      "service": "Treatment",
       "rating": 5,
-      "quote": "Akhirnya nemu salon yang stylist-nya beneran nanya dulu gaya hidup aku sebelum motong. Hasilnya rapi dan gampang dirawat. Recommended."
+      "quote": "Pelayanannya ramah banget, tempatnya bersih dan nyaman. Aku treatment di sini hasilnya memuaskan, staff juga telaten dan menjelaskan prosesnya dengan baik. Harga masih worth it dengan kualitas yang didapat. Pasti bakal balik lagi dan rekomendasiin ke teman-teman! 💖"
     },
     {
-      "name": "Melati P.",
-      "service": "Bridal Package",
+      "name": "Klien Paradise",
+      "service": "Treatment",
       "rating": 5,
-      "quote": "Paket bridal-nya luar biasa. Trial dulu, di hari H semua on time dan hasilnya flawless. Foto-foto wedding aku jadi cantik banget berkat tim Paradise."
-    },
-    {
-      "name": "Sari W.",
-      "service": "Hair Treatment",
-      "rating": 5,
-      "quote": "Rambut aku yang rusak karena bleaching pelan-pelan sehat lagi. Tempatnya nyaman, treatment-nya detail, dan hasilnya keliatan beda dari bulan pertama."
+      "quote": "Langganan banget di sini! Staff-nya baik, ramah, dan hasil treatment nya selalu bikin puas. Nggak nyesel deh datang ke sini, next pasti balik lagi 🥰"
     }
   ],
   "faqs": [
@@ -637,17 +631,9 @@
     {
       "question": "Apakah harga di website sudah final?",
       "answer": "Ya, semua harga yang tertera adalah harga final tanpa biaya tersembunyi. Harga bisa berbeda hanya jika ada perawatan tambahan yang kamu minta sendiri."
-    },
-    {
-      "question": "Berapa lama waktu untuk satu sesi perawatan?",
-      "answer": "Tergantung layanan: potong rambut sekitar 45–60 menit, treatment 1–2 jam, dan warna/balayage 2–4 jam. Durasi detail ada di setiap halaman paket."
-    },
-    {
-      "question": "Apakah ada garansi jika hasilnya tidak sesuai?",
-      "answer": "Kami selalu melakukan konsultasi sebelum mulai. Jika ada hal yang tidak sesuai, beri tahu kami dalam 3 hari — kami akan perbaiki tanpa biaya. Kepuasanmu prioritas kami."
     }
   ],
-  "galleryCta": "Lihat lebih banyak hasil karya kami di Instagram",
+  "galleryCta": "Lihat lebih banyak hasil karya kami di Social media",
   "video": {
     "src": "",
     "poster": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1280&q=80",

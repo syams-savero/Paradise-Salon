@@ -55,21 +55,22 @@ export function GalleryPreview() {
           ))}
         </div>
 
-        <Reveal delay={0.15} className="mt-12 flex flex-col items-center gap-4 text-center">
+        <Reveal delay={0.15} className="mt-12 flex flex-col items-center gap-6 text-center">
           <p className="font-serif text-2xl italic text-ink-soft md:text-3xl">
             {galleryCta}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {site.socials.map((s) => (
-              <Link
+              <a
                 key={s.label}
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-rosegold-700 hover:text-rosegold-800"
+                className="group relative inline-flex min-h-11 items-center gap-2 rounded-full border border-rosegold-600/30 bg-white px-6 py-2.5 text-sm font-medium uppercase tracking-[0.12em] text-rosegold-700 shadow-[0_2px_0_0_rgba(183,110,121,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:border-rosegold-600/50 hover:bg-rosegold-600/5 hover:shadow-[0_4px_0_0_rgba(183,110,121,0.25)] active:translate-y-0 active:shadow-[0_1px_0_0_rgba(183,110,121,0.2)]"
               >
-                {s.label.includes("TikTok") ? "♪" : "📷"} {s.handle}
-              </Link>
+                {s.handle}
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
             ))}
           </div>
         </Reveal>

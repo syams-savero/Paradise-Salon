@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { packages } from "@/data/content";
 import { Reveal } from "@/components/motion";
-import { Img } from "@/components/img";
 import { cn } from "@/lib/utils";
 
 export function Packages({ showLink = true }: { showLink?: boolean }) {
@@ -40,14 +39,7 @@ export function Packages({ showLink = true }: { showLink?: boolean }) {
                 p.featured && "border-rosegold-700 bg-rosegold-600/5"
               )}
             >
-              <div className="relative aspect-[4/3] overflow-hidden border-b border-line">
-                <Img
-                  src={p.image}
-                  alt={p.name}
-                  className="transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex items-center justify-between border-b border-line px-4 pt-4 md:px-5">
+              <div className="flex items-center justify-between border-b border-line px-4 pt-5 md:px-5 md:pt-6">
                 <h3 className="font-serif text-xl font-medium text-ink md:text-2xl">
                   {p.name}
                 </h3>

@@ -44,7 +44,7 @@ export default function HomePage() {
               biaya tambahan.
             </p>
             <ul className="mt-7 space-y-3 text-base font-light text-ink/85 md:text-sm">
-              {["Konsultasi gratis sebelum perawatan", "Harga fix sesuai paket, tanpa biaya tersembunyi", "Stylist berpengalaman untuk semua jenis rambut"].map(
+              {["Konsultasi gratis sebelum perawatan", "Harga fix sesuai paket, tanpa biaya tersembunyi", "Stylist berpengalaman untuk semua jenis pelayanan"].map(
                 (item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-rosegold-600" />
