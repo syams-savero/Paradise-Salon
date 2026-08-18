@@ -119,6 +119,11 @@ export default function TentangKontakPage() {
                       >
                         {b.address}
                       </a>
+                      {b.phone && (
+                        <p className="mt-1 text-sm font-light text-ink-soft">
+                          {b.phone.join(" · ")}
+                        </p>
+                      )}
                     </div>
                   </li>
                 ))}
@@ -147,14 +152,20 @@ export default function TentangKontakPage() {
                     <p className="font-medium uppercase tracking-[0.16em] text-ink">
                       Telepon / WhatsApp
                     </p>
-                    <a
-                      href={waLink(waDefaultMessage)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-1 block font-light text-ink-soft hover:text-rosegold-700"
-                    >
-                      {site.phone}
-                    </a>
+                    <ul className="mt-1 space-y-1">
+                      {site.branches.map((b) => (
+                        <li key={b.name}>
+                          <a
+                            href={waLink(waDefaultMessage, b.whatsapp?.[0])}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block font-light text-ink-soft hover:text-rosegold-700"
+                          >
+                            {b.name}: {b.phone?.join(" / ") ?? site.phone}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </li>
               </ul>

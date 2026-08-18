@@ -434,6 +434,8 @@ function ProfileTab({
             <Field label="Nama Cabang" value={b.name} onChange={(v) => set((p) => void (p.site.branches[i].name = v))} />
             <Field label="Alamat" value={b.address} textarea onChange={(v) => set((p) => void (p.site.branches[i].address = v))} />
             <Field label="Link Google Maps" value={b.mapsUrl} onChange={(v) => set((p) => void (p.site.branches[i].mapsUrl = v))} />
+            <Field label="No. WhatsApp (koma untuk beberapa)" value={(b.whatsapp ?? []).join(", ")} onChange={(v) => set((p) => { p.site.branches[i].whatsapp = v.split(",").map((s) => s.trim()).filter(Boolean); })} />
+            <Field label="No. Tampil (koma untuk beberapa)" value={(b.phone ?? []).join(", ")} onChange={(v) => set((p) => { p.site.branches[i].phone = v.split(",").map((s) => s.trim()).filter(Boolean); })} />
             <div className="grid grid-cols-2 gap-3">
               <Field label="Latitude" type="number" value={String(b.lat)} onChange={(v) => set((p) => void (p.site.branches[i].lat = Number(v) || 0))} />
               <Field label="Longitude" type="number" value={String(b.lng)} onChange={(v) => set((p) => void (p.site.branches[i].lng = Number(v) || 0))} />
@@ -448,6 +450,8 @@ function ProfileTab({
                 name: "",
                 address: "",
                 mapsUrl: "",
+                whatsapp: [],
+                phone: [],
                 lat: -0.5,
                 lng: 101.45,
               })

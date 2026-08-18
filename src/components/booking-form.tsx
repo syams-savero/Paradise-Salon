@@ -151,7 +151,9 @@ export function BookingForm() {
     ]
       .filter(Boolean)
       .join("\n");
-    window.open(waLink(message), "_blank", "noopener,noreferrer");
+    const branchData = site.branches.find((b) => b.name === branch);
+    const waNumber = branchData?.whatsapp?.[0] ?? site.whatsapp;
+    window.open(waLink(message, waNumber), "_blank", "noopener,noreferrer");
     setSent(true);
     window.setTimeout(() => setSent(false), 5000);
   }
@@ -355,9 +357,6 @@ export function BookingForm() {
           Lanjutkan ke WhatsApp
           <Send className="h-4 w-4" />
         </Button>
-        <p className="text-center text-xs font-light text-ink-soft">
-          Tanpa biaya · Tanpa komitmen · Balasan cepat saat jam operasional
-        </p>
       </div>
     </form>
   );

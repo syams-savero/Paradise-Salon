@@ -1,12 +1,41 @@
 import { Star } from "lucide-react";
 import { testimonials } from "@/data/content";
-import { Reveal } from "@/components/motion";
+
+function ReviewCard({ t }: { t: (typeof testimonials)[number] }) {
+  return (
+    <figure className="flex w-80 shrink-0 flex-col justify-between border border-line bg-white/60 p-5 md:w-96 md:p-6">
+      <div>
+        <div className="mb-3 flex gap-1" aria-label={`Rating ${t.rating} dari 5`}>
+          {Array.from({ length: t.rating }).map((_, s) => (
+            <Star key={s} className="h-3.5 w-3.5 fill-rosegold-600 text-rosegold-600" />
+          ))}
+        </div>
+        <blockquote className="text-sm font-light italic leading-relaxed text-ink md:text-base">
+          &ldquo;{t.quote}&rdquo;
+        </blockquote>
+      </div>
+      <figcaption className="mt-4 flex items-center gap-2.5 border-t border-line pt-4">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blush-100 font-serif text-sm text-rosegold-800">
+          {t.name.charAt(0)}
+        </span>
+        <div>
+          <p className="text-xs font-medium text-ink">{t.name}</p>
+          <p className="text-[11px] font-light text-ink-soft">{t.service}</p>
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
 
 export function Testimonials() {
+  const mid = Math.ceil(testimonials.length / 2);
+  const row1 = testimonials.slice(0, mid);
+  const row2 = testimonials.slice(mid);
+
   return (
     <section className="bg-ivory-deep py-16 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <Reveal className="mb-12 text-center md:mb-16">
+        <div className="mb-12 text-center md:mb-16">
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
             Kata Mereka
           </p>
@@ -17,43 +46,29 @@ export function Testimonials() {
             Cerita nyata dari klien yang mempercayakan rambut mereka kepada
             kami di Pekanbaru.
           </p>
-        </Reveal>
+        </div>
+      </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={(i % 2) * 0.1} className="min-w-0">
-              <figure className="flex h-full flex-col justify-between border border-line bg-white/60 p-6 md:p-8">
-                <div>
-                  <div className="mb-4 flex gap-1" aria-label={`Rating ${t.rating} dari 5`}>
-                    {Array.from({ length: t.rating }).map((_, s) => (
-                      <Star key={s} className="h-4 w-4 fill-rosegold-600 text-rosegold-600" />
-                    ))}
-                  </div>
-                  <blockquote className="font-serif text-xl italic leading-relaxed text-ink md:text-2xl">
-                    “{t.quote}”
-                  </blockquote>
-                </div>
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-blush-100 font-serif text-lg text-rosegold-800">
-                    {t.name.charAt(0)}
-                  </span>
-                  <div>
-                    <p className="text-sm font-medium text-ink">{t.name}</p>
-                    <p className="text-sm font-light text-ink-soft">
-                      {t.service} · Klien Paradise Salon
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
+      <div className="space-y-4">
+        <div className="group relative overflow-hidden">
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-ivory-deep to-transparent md:w-32" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-ivory-deep to-transparent md:w-32" />
+          <div className="flex w-max gap-4 animate-scroll-left group-hover:[animation-play-state:paused]">
+            {[...row1, ...row1].map((t, i) => (
+              <ReviewCard key={`r1-${i}`} t={t} />
+            ))}
+          </div>
         </div>
 
-        <Reveal delay={0.15} className="mt-10 text-center">
-          <p className="text-xs font-light uppercase tracking-[0.2em] text-ink-soft">
-            Baca review lengkap di Google Maps
-          </p>
-        </Reveal>
+        <div className="group relative overflow-hidden">
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-ivory-deep to-transparent md:w-32" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-ivory-deep to-transparent md:w-32" />
+          <div className="flex w-max gap-4 animate-scroll-right group-hover:[animation-play-state:paused]">
+            {[...row2, ...row2].map((t, i) => (
+              <ReviewCard key={`r2-${i}`} t={t} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

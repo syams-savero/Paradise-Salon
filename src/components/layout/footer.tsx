@@ -104,6 +104,9 @@ export function Footer() {
                   <a href={b.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blush-200">
                     <span className="block font-medium text-ivory/90">{b.name}</span>
                     <span>{b.address}</span>
+                    {b.phone && (
+                      <span className="mt-0.5 block text-ivory/55">{b.phone.join(" · ")}</span>
+                    )}
                   </a>
                 </li>
               ))}

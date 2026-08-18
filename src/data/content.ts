@@ -18,8 +18,8 @@ export const faqs = content.faqs;
 export const galleryCta = content.galleryCta;
 export const video = content.video;
 
-export function waLink(message: string): string {
-  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
+export function waLink(message: string, phone?: string): string {
+  return `https://wa.me/${phone ?? site.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
 export const waDefaultMessage =
