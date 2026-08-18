@@ -109,7 +109,7 @@
       "tagline": "",
       "duration": "",
       "from": "Rp 15.000",
-      "image": ""
+      "image": "/haircut.avif"
     },
     {
       "name": "Gunting Cuci Rambut",
@@ -204,8 +204,8 @@
       "category": "Creambath & Masker",
       "tagline": "",
       "duration": "",
-      "from": "Rp 25.000",
-      "image": ""
+      "from": "Rp 45.000",
+      "image": "/creambathspa.avif"
     },
     {
       "name": "Creambath Rose & Aloe Vera",
@@ -301,7 +301,7 @@
       "tagline": "",
       "duration": "",
       "from": "Rp 50.000",
-      "image": ""
+      "image": "/lashlift.jpg"
     },
     {
       "name": "Eyelash Korean Natural (Promo)",
@@ -365,7 +365,7 @@
       "tagline": "",
       "duration": "",
       "from": "Rp 25.000",
-      "image": ""
+      "image": "/facial.webp"
     },
     {
       "name": "Facial Wardah",
@@ -397,7 +397,7 @@
       "tagline": "",
       "duration": "",
       "from": "Rp 35.000",
-      "image": ""
+      "image": "/ratus.jpg"
     },
     {
       "name": "Lulur Seluruh Tubuh",
