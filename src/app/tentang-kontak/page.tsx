@@ -4,21 +4,29 @@ import {
   MapPin,
   Clock,
   Phone,
-  Mail,
   MessageCircle,
 } from "lucide-react";
-import { InstagramIcon, TikTokIcon } from "@/components/icons";
 import { site, waLink, waDefaultMessage } from "@/data/content";
 import { Reveal } from "@/components/motion";
 import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("./_map").then((m) => m.BranchMap), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-[400px] items-center justify-center border border-line bg-ivory-deep text-sm text-ink-soft">
+      Memuat peta…
+    </div>
+  ),
+});
 
 export const metadata: Metadata = {
   title: "Tentang & Kontak",
-  description: `Tentang ${site.name}, salon premium di ${site.city}. Alamat, jam operasional, kontak, dan media sosial. Konsultasi & booking mudah via WhatsApp.`,
+  description: `Tentang ${site.name}, salon premium di ${site.city} dengan 3 cabang. Alamat, jam operasional, kontak, dan media sosial. Konsultasi & booking mudah via WhatsApp.`,
   alternates: { canonical: "/tentang-kontak" },
   openGraph: {
     title: `Tentang & Kontak — ${site.name}`,
-    description: `Salon premium di ${site.city}. Alamat, jam operasional, kontak, dan media sosial.`,
+    description: `Salon premium di ${site.city} dengan 3 cabang. Alamat, jam operasional, kontak, dan media sosial.`,
     url: `https://${site.domain}/tentang-kontak/`,
     images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
   },
@@ -103,24 +111,26 @@ export default function TentangKontakPage() {
                 Temukan kami di {site.city}
               </h2>
               <ul className="mt-8 space-y-6 text-sm">
-                <li className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[3px] border border-line bg-white/70 text-rosegold-700">
-                    <MapPin className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <p className="font-medium uppercase tracking-[0.16em] text-ink">
-                      Alamat
-                    </p>
-                    <a
-                      href={site.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-1 block font-light leading-relaxed text-ink-soft hover:text-rosegold-700"
-                    >
-                      {site.address}
-                    </a>
-                  </div>
-                </li>
+                {site.branches.map((b) => (
+                  <li key={b.name} className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[3px] border border-line bg-white/70 text-rosegold-700">
+                      <MapPin className="h-4 w-4" />
+                    </span>
+                    <div>
+                      <p className="font-medium uppercase tracking-[0.16em] text-ink">
+                        {b.name}
+                      </p>
+                      <a
+                        href={b.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 block font-light leading-relaxed text-ink-soft hover:text-rosegold-700"
+                      >
+                        {b.address}
+                      </a>
+                    </div>
+                  </li>
+                ))}
                 <li className="flex items-start gap-4">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[3px] border border-line bg-white/70 text-rosegold-700">
                     <Clock className="h-4 w-4" />
@@ -156,22 +166,6 @@ export default function TentangKontakPage() {
                     </a>
                   </div>
                 </li>
-                <li className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[3px] border border-line bg-white/70 text-rosegold-700">
-                    <Mail className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <p className="font-medium uppercase tracking-[0.16em] text-ink">
-                      Email
-                    </p>
-                    <a
-                      href={`mailto:${site.email}`}
-                      className="mt-1 block font-light text-ink-soft hover:text-rosegold-700"
-                    >
-                      {site.email}
-                    </a>
-                  </div>
-                </li>
               </ul>
             </Reveal>
 
@@ -196,11 +190,7 @@ export default function TentangKontakPage() {
                         >
                           <span className="flex items-center gap-4">
                             <span className="flex h-11 w-11 items-center justify-center rounded-[3px] bg-ink text-ivory transition-colors group-hover:bg-rosegold-700">
-                              {s.label === "Instagram" ? (
-                                <InstagramIcon className="h-4 w-4" />
-                              ) : (
-                                <TikTokIcon className="h-4 w-4" />
-                              )}
+                              {s.label.includes("TikTok") ? "♪" : "📷"}
                             </span>
                             <span>
                               <span className="block text-sm font-medium text-ink">
@@ -220,7 +210,7 @@ export default function TentangKontakPage() {
                   </div>
                   <div className="rounded-[3px] bg-blush-50 p-6 md:p-8">
                     <p className="font-serif text-xl italic leading-relaxed text-ink md:text-2xl">
-                      “{site.slogan}”
+                      &ldquo;{site.slogan}&rdquo;
                     </p>
                     <div className="mt-5 flex flex-wrap gap-3">
                       <Button asChild size="lg">
@@ -231,7 +221,7 @@ export default function TentangKontakPage() {
                       </Button>
                       <Button asChild size="lg" variant="outline">
                         <a
-                          href={site.mapsUrl}
+                          href={site.branches[0].mapsUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -244,6 +234,22 @@ export default function TentangKontakPage() {
               </div>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <Reveal className="mb-10">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-rosegold-700">
+              Lokasi
+            </p>
+            <h2 className="font-serif text-3xl font-medium text-ink md:text-5xl">
+              3 cabang di {site.city}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Map branches={site.branches} />
+          </Reveal>
         </div>
       </section>
     </>

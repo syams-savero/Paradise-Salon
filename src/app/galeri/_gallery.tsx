@@ -1,15 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Play } from "lucide-react";
-import { InstagramIcon } from "@/components/icons";
-import { gallery, galleryCategories, site } from "@/data/content";
+import { gallery, galleryCategories, site, video, galleryCta } from "@/data/content";
 import { Reveal } from "@/components/motion";
 import { Img } from "@/components/img";
 import { cn } from "@/lib/utils";
-
-const VIDEO_PLACEHOLDER =
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4";
 
 export function GalleryBrowser() {
   const [active, setActive] = useState("semua");
@@ -91,58 +86,59 @@ export function GalleryBrowser() {
 
           <Reveal delay={0.1} className="mt-12 text-center">
             <p className="text-base font-light text-ink-soft md:text-sm">
-              Lihat update harian kami di
+              {galleryCta}
             </p>
-            <a
-              href={site.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-rosegold-700 hover:text-rosegold-800"
-            >
-              <InstagramIcon className="h-4 w-4" /> @paradisesalon
-            </a>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              {site.socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-rosegold-700 hover:text-rosegold-800"
+                >
+                  {s.label.includes("TikTok") ? "♪" : "📷"} {s.handle}
+                </a>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="bg-ink py-14 md:py-24">
-        <div className="mx-auto max-w-4xl px-5 md:px-8">
-          <Reveal className="mb-10 text-center">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-blush-200">
-              Video
-            </p>
-            <h2 className="font-serif text-4xl font-medium leading-tight text-ivory md:text-5xl">
-              Lihat prosesnya, rasakan hasilnya
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="group relative aspect-video overflow-hidden">
-              <video
-                controls
-                preload="none"
-                poster="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1280&q=80"
-                className="h-full w-full bg-ink"
-                aria-label="Video perawatan di Paradise Salon"
-              >
-                <source src={VIDEO_PLACEHOLDER} type="video/mp4" />
-              </video>
-              <div
-                className="pointer-events-none absolute inset-0 flex items-center justify-center"
-                aria-hidden
-              >
-                <span className="flex h-16 w-16 items-center justify-center rounded-full border border-ivory/40 bg-ink/40 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                  <Play className="ml-1 h-6 w-6 fill-ivory text-ivory" />
-                </span>
+      {video.src && (
+        <section className="bg-ink py-14 md:py-24">
+          <div className="mx-auto max-w-4xl px-5 md:px-8">
+            <Reveal className="mb-10 text-center">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.45em] text-blush-200">
+                Video
+              </p>
+              <h2 className="font-serif text-4xl font-medium leading-tight text-ivory md:text-5xl">
+                Lihat prosesnya, rasakan hasilnya
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="group relative aspect-video overflow-hidden">
+                <video
+                  controls
+                  preload="none"
+                  poster={video.poster}
+                  className="h-full w-full bg-ink"
+                  aria-label="Video perawatan di Paradise Salon"
+                >
+                  <source src={video.src} type="video/mp4" />
+                </video>
               </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.15} className="mt-6 text-center">
-            <p className="text-xs font-light uppercase tracking-[0.2em] text-ivory/60">
-              Video asli perawatan menyusul
-            </p>
-          </Reveal>
-        </div>
-      </section>
+            </Reveal>
+            {video.caption && (
+              <Reveal delay={0.15} className="mt-6 text-center">
+                <p className="text-xs font-light uppercase tracking-[0.2em] text-ivory/60">
+                  {video.caption}
+                </p>
+              </Reveal>
+            )}
+          </div>
+        </section>
+      )}
     </>
   );
 }

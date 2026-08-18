@@ -5,7 +5,7 @@
     "city": "Pekanbaru",
     "title": "Paradise Salon — Salon Mewah & Perawatan Rambut di Pekanbaru",
     "slogan": "Your beauty starts here",
-    "description": "Paradise Salon, salon premium di Pekanbaru. Potong rambut, hair color, balayage, dan treatment rambut dengan hasil yang membuatmu tampil percaya diri. Booking mudah via WhatsApp.",
+    "description": "Paradise Salon, salon premium di Pekanbaru dengan 3 cabang. Potong rambut, hair color, balayage, dan treatment rambut dengan hasil yang membuatmu tampil percaya diri. Booking mudah via WhatsApp.",
     "keywords": [
       "salon pekanbaru",
       "salon mewah pekanbaru",
@@ -17,23 +17,30 @@
       "paradise salon"
     ],
     "ogImage": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80",
-    "whatsapp": "6281200000000",
-    "phone": "+62 812-0000-0000",
-    "email": "halo@paradisesalon.com",
-    "address": "Jl. Sudirman No. 123, Pekanbaru, Riau 28112",
-    "mapsUrl": "https://maps.google.com/?q=Paradise+Salon+Pekanbaru",
-    "instagram": "https://instagram.com/paradisesalon",
-    "tiktok": "https://tiktok.com/@paradisesalon",
+    "whatsapp": "6282169999410",
+    "phone": "0821-6999-9410",
+    "instagram": "https://instagram.com/paradise1.salon.official",
+    "tiktok": "https://tiktok.com/@endrayani.lismawa",
     "socials": [
       {
-        "label": "Instagram",
-        "handle": "@paradisesalon",
-        "url": "https://instagram.com/paradisesalon"
+        "label": "Instagram Paradise 1",
+        "handle": "@paradise1.salon.official",
+        "url": "https://instagram.com/paradise1.salon.official"
+      },
+      {
+        "label": "Instagram Paradise 2",
+        "handle": "@paradise2.salon.official",
+        "url": "https://instagram.com/paradise2.salon.official"
+      },
+      {
+        "label": "Instagram Paradise 3",
+        "handle": "@paradise3.salon.official",
+        "url": "https://instagram.com/paradise3.salon.official"
       },
       {
         "label": "TikTok",
-        "handle": "@paradisesalon",
-        "url": "https://tiktok.com/@paradisesalon"
+        "handle": "@endrayani.lismawa",
+        "url": "https://tiktok.com/@endrayani.lismawa"
       }
     ],
     "founded": "2003",
@@ -42,12 +49,31 @@
     "ratingCount": "300+",
     "hours": [
       {
-        "days": "Senin – Sabtu",
-        "time": "09.00 – 21.00 WIB"
+        "days": "Setiap Hari",
+        "time": "09.00 – 20.00 WIB"
+      }
+    ],
+    "branches": [
+      {
+        "name": "Paradise 1 Hangtuah",
+        "address": "Jl. Hangtuah No.28B, seberang SMP 14, Pekanbaru",
+        "mapsUrl": "https://maps.google.com/?q=Paradise+Salon+Hangtuah+Pekanbaru",
+        "lat": -0.5140,
+        "lng": 101.4450
       },
       {
-        "days": "Minggu",
-        "time": "10.00 – 19.00 WIB"
+        "name": "Paradise 2 Jondul Lama",
+        "address": "Jondul Lama Blok Q No.18, Pekanbaru",
+        "mapsUrl": "https://maps.google.com/?q=Paradise+Salon+Jondul+Lama+Pekanbaru",
+        "lat": -0.4820,
+        "lng": 101.4320
+      },
+      {
+        "name": "Paradise 3 Durian",
+        "address": "Jl. Durian No.105, seberang Asrama Brimob, Pekanbaru",
+        "mapsUrl": "https://maps.google.com/?q=Paradise+Salon+Durian+Pekanbaru",
+        "lat": -0.4990,
+        "lng": 101.4530
       }
     ],
     "logo": "/logo/logo.png"
@@ -621,5 +647,10 @@
       "answer": "Kami selalu melakukan konsultasi sebelum mulai. Jika ada hal yang tidak sesuai, beri tahu kami dalam 3 hari — kami akan perbaiki tanpa biaya. Kepuasanmu prioritas kami."
     }
   ],
-  "galleryCta": "Lihat lebih banyak hasil karya kami di Instagram @paradisesalon"
+  "galleryCta": "Lihat lebih banyak hasil karya kami di Instagram",
+  "video": {
+    "src": "",
+    "poster": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1280&q=80",
+    "caption": "Video asli perawatan menyusul"
+  }
 }

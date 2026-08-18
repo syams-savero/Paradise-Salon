@@ -421,11 +421,42 @@ function ProfileTab({
       <Section title="Kontak">
         <Field label="Nomor WhatsApp (kode negara, tanpa +)" value={c.site.whatsapp} onChange={(v) => set((p) => void (p.site.whatsapp = v))} />
         <Field label="Telepon" value={c.site.phone} onChange={(v) => set((p) => void (p.site.phone = v))} />
-        <Field label="Email" value={c.site.email} onChange={(v) => set((p) => void (p.site.email = v))} />
-        <Field label="Alamat" value={c.site.address} textarea onChange={(v) => set((p) => void (p.site.address = v))} />
-        <Field label="Link Google Maps" value={c.site.mapsUrl} onChange={(v) => set((p) => void (p.site.mapsUrl = v))} />
-        <Field label="Link Instagram" value={c.site.instagram} onChange={(v) => set((p) => void (p.site.instagram = v))} />
+        <Field label="Link Instagram (primer)" value={c.site.instagram} onChange={(v) => set((p) => void (p.site.instagram = v))} />
         <Field label="Link TikTok" value={c.site.tiktok} onChange={(v) => set((p) => void (p.site.tiktok = v))} />
+      </Section>
+      <Section title="Cabang">
+        {c.site.branches.map((b, i) => (
+          <ArrayItem
+            key={i}
+            title={b.name || `Cabang ${i + 1}`}
+            onDelete={() => set((p) => void p.site.branches.splice(i, 1))}
+          >
+            <Field label="Nama Cabang" value={b.name} onChange={(v) => set((p) => void (p.site.branches[i].name = v))} />
+            <Field label="Alamat" value={b.address} textarea onChange={(v) => set((p) => void (p.site.branches[i].address = v))} />
+            <Field label="Link Google Maps" value={b.mapsUrl} onChange={(v) => set((p) => void (p.site.branches[i].mapsUrl = v))} />
+            <div className="grid grid-cols-2 gap-3">
+              <Field label="Latitude" type="number" value={String(b.lat)} onChange={(v) => set((p) => void (p.site.branches[i].lat = Number(v) || 0))} />
+              <Field label="Longitude" type="number" value={String(b.lng)} onChange={(v) => set((p) => void (p.site.branches[i].lng = Number(v) || 0))} />
+            </div>
+          </ArrayItem>
+        ))}
+        <button
+          type="button"
+          onClick={() =>
+            set((p) =>
+              void p.site.branches.push({
+                name: "",
+                address: "",
+                mapsUrl: "",
+                lat: -0.5,
+                lng: 101.45,
+              })
+            )
+          }
+          className="mt-2 inline-flex items-center gap-1 text-sm text-rosegold-700"
+        >
+          <Plus className="h-4 w-4" /> Tambah cabang
+        </button>
       </Section>
       <Section title="Jam Operasional">
         {c.site.hours.map((h, i) => (

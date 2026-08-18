@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Star } from "lucide-react";
-import { galleryCta } from "@/data/content";
+import { ArrowUpRight } from "lucide-react";
+import { galleryCta, site } from "@/data/content";
 import { Reveal } from "@/components/motion";
 import { Img } from "@/components/img";
 
@@ -59,14 +59,19 @@ export function GalleryPreview() {
           <p className="font-serif text-2xl italic text-ink-soft md:text-3xl">
             {galleryCta}
           </p>
-          <Link
-            href="https://instagram.com/paradisesalon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-rosegold-700 hover:text-rosegold-800"
-          >
-            <Star className="h-4 w-4" /> @paradisesalon
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {site.socials.map((s) => (
+              <Link
+                key={s.label}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-rosegold-700 hover:text-rosegold-800"
+              >
+                {s.label.includes("TikTok") ? "♪" : "📷"} {s.handle}
+              </Link>
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>

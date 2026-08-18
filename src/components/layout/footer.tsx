@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Clock, Phone } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import { InstagramIcon, TikTokIcon } from "@/components/icons";
 import { site, waLink, waDefaultMessage } from "@/data/content";
 
@@ -39,24 +39,22 @@ export function Footer() {
               warna, dan momen spesialmu.
             </p>
             <div className="flex gap-3">
-              <a
-                href={site.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram Paradise Salon"
-                className="flex h-11 w-11 items-center justify-center rounded-[3px] border border-ivory/20 text-ivory/80 transition-colors hover:border-blush-200 hover:text-blush-200"
-              >
-                <InstagramIcon className="h-4 w-4" />
-              </a>
-              <a
-                href={site.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok Paradise Salon"
-                className="flex h-11 w-11 items-center justify-center rounded-[3px] border border-ivory/20 text-ivory/80 transition-colors hover:border-blush-200 hover:text-blush-200"
-              >
-                <TikTokIcon className="h-4 w-4" />
-              </a>
+              {site.socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-[3px] border border-ivory/20 text-ivory/80 transition-colors hover:border-blush-200 hover:text-blush-200"
+                >
+                  {s.label.includes("TikTok") ? (
+                    <TikTokIcon className="h-4 w-4" />
+                  ) : (
+                    <InstagramIcon className="h-4 w-4" />
+                  )}
+                </a>
+              ))}
             </div>
           </div>
 
@@ -97,26 +95,18 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.28em] text-blush-200">
-              Kontak
+              Cabang Kami
             </h3>
-            <ul className="mt-5 space-y-3 text-sm font-light text-ivory/75">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blush-200/80" />
-                <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blush-200">
-                  {site.address}
-                </a>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-blush-200/80" />
-                <a
-                  href={waLink(waDefaultMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-blush-200"
-                >
-                  {site.phone}
-                </a>
-              </li>
+            <ul className="mt-5 space-y-4 text-sm font-light text-ivory/75">
+              {site.branches.map((b) => (
+                <li key={b.name} className="flex items-start gap-2.5">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blush-200/80" />
+                  <a href={b.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blush-200">
+                    <span className="block font-medium text-ivory/90">{b.name}</span>
+                    <span>{b.address}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
             <a
               href={waLink(waDefaultMessage)}
